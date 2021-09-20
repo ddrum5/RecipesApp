@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_pilot/view_models/detail_viewmodel/overview_viewmodel.dart';
+import 'package:project_pilot/view_models/detail/details_viewmodel.dart';
 import 'package:project_pilot/views/screens/detail/widgets/overview_widget.dart';
 
 class OverviewScreen extends StatefulWidget {
-  OverviewViewModel overviewViewModel = OverviewViewModel.getInstance();
-  final int id;
-
-  OverviewScreen(this.id);
+  DetailsViewModel _detailsViewModel;
+  OverviewScreen(this._detailsViewModel);
 
   @override
   _OverviewScreenState createState() => _OverviewScreenState();
@@ -18,7 +16,6 @@ class _OverviewScreenState extends State<OverviewScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.overviewViewModel.getData(widget.id);
   }
 
 
@@ -26,10 +23,10 @@ class _OverviewScreenState extends State<OverviewScreen> {
   Widget build(BuildContext context) {
     return  Center(
       child: StreamBuilder(
-        stream: widget.overviewViewModel.liveData,
+        stream: widget._detailsViewModel.streamOverView,
         builder: (context, AsyncSnapshot<Object?> snapshot) {
           if (snapshot.hasData) {
-            return OverviewWidget(widget.overviewViewModel);
+            return OverviewWidget(widget._detailsViewModel);
           } else {
             return Center(
               child: CircularProgressIndicator(),

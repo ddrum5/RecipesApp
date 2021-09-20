@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:project_pilot/constant/custom_theme.dart';
-import 'package:project_pilot/view_models/home_viewmodel.dart';
-import 'package:project_pilot/views/screens/home_screen_controller.dart';
+import 'package:project_pilot/helper/custom_theme.dart';
+import 'package:project_pilot/views/screens/home_screen.dart';
 
 
 void main() {

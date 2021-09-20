@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:project_pilot/constant/custom_color.dart';
+import 'package:project_pilot/helper/custom_color.dart';
 
-import 'package:project_pilot/view_models/home_viewmodel/recipes_viewmodel.dart';
-import 'package:project_pilot/views/screens/detail_screen_controller.dart';
+import 'package:project_pilot/view_models/home/recipes_viewmodel.dart';
+import 'package:project_pilot/views/screens/detail_screen.dart';
 
 class ListRecipesWidget extends StatefulWidget {
   RecipesViewModel recipesViewModel;
@@ -18,7 +18,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.recipesViewModel.liveData.value.length,
+      itemCount: widget.recipesViewModel.streamData.value.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
@@ -26,7 +26,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => DetailScreen(
-                        widget.recipesViewModel.liveData.value[index].id)));
+                        widget.recipesViewModel.streamData.value[index].id)));
           },
           child: Card(
             shape: RoundedRectangleBorder(
@@ -49,7 +49,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                               topLeft: Radius.circular(10)),
                           image: DecorationImage(
                             image: NetworkImage(
-                              widget.recipesViewModel.liveData.value[index]
+                              widget.recipesViewModel.streamData.value[index]
                                   .imageUrl
                                   .toString(),
                             ),
@@ -61,16 +61,19 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                   padding: EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      Text(
-                        widget.recipesViewModel.liveData.value[index].title
-                            .toString(),
-                        maxLines: 2,
-                        style: TextStyle(fontSize: 25),
+                      Align(
+                        child: Text(
+                          widget.recipesViewModel.streamData.value[index].title
+                              .toString(),
+                          maxLines: 2,
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        alignment: Alignment.centerLeft,
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 16)),
                       Html(
                         data: widget
-                            .recipesViewModel.liveData.value[index].description,
+                            .recipesViewModel.streamData.value[index].description,
                         style: {
                           "*": Style(
                               color: CustomColor.iconGray,
@@ -81,15 +84,14 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 10)),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+
                         children: [
                           Column(
                             children: [
                               Icon(Icons.favorite,
                                   color: CustomColor.red, size: 24),
                               Text(
-                                widget.recipesViewModel.liveData.value[index]
+                                widget.recipesViewModel.streamData.value[index]
                                     .likesNumber
                                     .toString(),
                                 style: TextStyle(
@@ -103,7 +105,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                               Icon(Icons.schedule,
                                   color: CustomColor.orange, size: 24),
                               Text(
-                                widget.recipesViewModel.liveData.value[index]
+                                widget.recipesViewModel.streamData.value[index]
                                     .readyInMinutes
                                     .toString(),
                                 style: TextStyle(
@@ -117,7 +119,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                               Icon(Icons.eco,
                                   color: CustomColor.isDisableColor(widget
                                       .recipesViewModel
-                                      .liveData
+                                      .streamData
                                       .value[index]
                                       .isVegan as bool),
                                   size: 24),
@@ -127,7 +129,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                   fontSize: 14,
                                   color: CustomColor.isDisableColor(widget
                                       .recipesViewModel
-                                      .liveData
+                                      .streamData
                                       .value[index]
                                       .isVegan as bool),
                                 ),

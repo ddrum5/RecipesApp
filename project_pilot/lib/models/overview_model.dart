@@ -11,19 +11,6 @@ class OverviewModel {
   bool? cheap;
   String? summary;
 
-  OverviewModel(
-      {this.image,
-        this.readyInMinutes,
-        this.title,
-        this.aggregateLikes,
-        this.cheap,
-        this.dairyFree,
-        this.glutenFree,
-        this.summary,
-        this.vegan,
-        this.vegetarian,
-        this.veryHealthy});
-
   OverviewModel.fromJson(Map<String, dynamic> json) {
     this.image=json['image'];
     this.readyInMinutes=json['readyInMinutes'];

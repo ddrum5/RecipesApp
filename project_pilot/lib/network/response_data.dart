@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:project_pilot/models/details_model.dart';
+import 'package:project_pilot/models/detail_model.dart';
 import 'package:project_pilot/models/ingredient_model.dart';
 import 'package:project_pilot/models/instruction_model.dart';
 import 'package:project_pilot/models/overview_model.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/network/networking.dart';
 import 'package:project_pilot/network/request_type.dart';
-import 'package:project_pilot/view_models/detail_viewmodel/overview_viewmodel.dart';
 
 class ResponseData {
 
@@ -23,7 +22,7 @@ class ResponseData {
 
   final String baseUrl = "https://api.spoonacular.com/recipes";
   final int recipeNumber = 3;
-  final String apiKey = "26aa0d4d45a5481a9f34bfdd4a2aee50";
+  final String apiKey = "fad5c78940bf4e53841caf97a0961865";
 
   Networking client = Networking(Client());
 
@@ -59,11 +58,11 @@ class ResponseData {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
         final ingredientsJsonData = jsonData['extendedIngredients'] as List<dynamic>;
         final analyzedInstructions = jsonData['analyzedInstructions'] as List<dynamic>;
-        // final instructionsJsonData = analyzedInstructions[0]['steps'] as List<dynamic>;
+        final instructionsJsonData = analyzedInstructions[0]['steps'] as List<dynamic>;
 
         detailsModel.overviewModel = OverviewModel.fromJson(jsonData);
         detailsModel.ingredientModels = ingredientsJsonData.map((e) => IngredientModel.fromJson(e)).toList() ;
-        // detailsModel.instructionModels = instructionsJsonData.map((e) => InstructionModel.fromJson(e)).toList() ;
+        detailsModel.instructionModels = instructionsJsonData.map((e) => InstructionModel.fromJson(e)).toList() ;
 
       }
       return detailsModel;

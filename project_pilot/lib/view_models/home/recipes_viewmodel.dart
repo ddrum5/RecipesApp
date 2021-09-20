@@ -13,15 +13,15 @@ class RecipesViewModel {
     return _recipesViewModel!;
   }
 
-  var liveData = BehaviorSubject<List<RecipeModel>>();
+  var streamData = BehaviorSubject<List<RecipeModel>>();
   var response = ResponseData.getInstance();
 
   void getRandomRecipes() async {
     var listData = await response.getRandomRecipes();
-    liveData.sink.add(listData);
+    streamData.sink.add(listData);
   }
 
   void dispose() {
-    liveData.close();
+    streamData.close();
   }
 }

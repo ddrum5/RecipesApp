@@ -45,6 +45,6 @@ class JokeScreen extends StatelessWidget {
                 ))),
       ),
     );
-    ;
+
   }
 }
