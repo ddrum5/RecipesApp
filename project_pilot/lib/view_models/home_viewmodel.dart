@@ -2,8 +2,17 @@
 import 'package:rxdart/rxdart.dart';
 
 class HomeViewModel{
-  BehaviorSubject<int> currentScreenIndex=BehaviorSubject<int>();
 
+  static HomeViewModel? _homeViewModel;
+
+  static HomeViewModel getInstance() {
+    if (_homeViewModel == null) {
+      _homeViewModel = HomeViewModel();
+    }
+    return _homeViewModel!;
+  }
+
+  BehaviorSubject<int> currentScreenIndex=BehaviorSubject<int>();
   HomeViewModel(){
     currentScreenIndex.sink.add(0);
   }

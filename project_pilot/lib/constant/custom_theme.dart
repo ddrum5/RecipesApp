@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:product/constant/custom_color.dart';
+import 'package:project_pilot/constant/custom_color.dart';
 
 class CustomTheme with ChangeNotifier {
   bool _isDart = false;

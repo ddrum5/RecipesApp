@@ -1,6 +1,5 @@
-name: product
+name: project_pilot
 description: A new Flutter project.
-
 
 publish_to: 'none'
 
@@ -19,20 +18,14 @@ dependencies:
   rxdart: ^0.27.2
   connectivity: ^3.0.6
   fluttertoast: ^8.0.8
-
+  flutter_html: ^2.1.2
 
   cupertino_icons: ^1.0.2
   http: 0.13.3
   sqflite: ^2.0.0+4
   flutter_search_bar: ^2.1.0
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
   flutter_native_splash: ^1.2.3
 
-# run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
 flutter_native_splash:
   image: assets/images/splash_screen.png
   android: true
@@ -40,10 +33,17 @@ flutter_native_splash:
   android_gravity: fill
 
 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+# run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
+
 flutter:
   uses-material-design: true
   generate: true
-
 
   assets:
     - assets/images/

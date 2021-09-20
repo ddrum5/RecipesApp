@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:product/constant/custom_theme.dart';
-import 'package:product/view_models/home_viewmodel.dart';
-import 'package:product/views/screens/home_screen.dart';
+import 'package:project_pilot/constant/custom_theme.dart';
+import 'package:project_pilot/view_models/home_viewmodel.dart';
+import 'package:project_pilot/views/screens/home_screen_controller.dart';
 
 
 void main() {
@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.lightMode,
-      home: HomeScreen(HomeViewModel()),
+      home: HomeScreen(),
     );
   }
 }

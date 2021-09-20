@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:product/constant/custom_color.dart';
-import 'package:product/view_models/home_viewmodel.dart';
-import 'package:product/views/screens/home_screens/favorites_screen.dart';
-import 'package:product/views/screens/home_screens/joke_screen.dart';
-import 'package:product/views/screens/home_screens/recipes_screen.dart';
+import 'package:project_pilot/constant/custom_color.dart';
+import 'package:project_pilot/view_models/home_viewmodel.dart';
+import 'package:project_pilot/views/screens/home/favorites_screen.dart';
+import 'package:project_pilot/views/screens/home/joke_screen.dart';
+import 'package:project_pilot/views/screens/home/recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  final HomeViewModel homeViewModel;
 
-  HomeScreen(this.homeViewModel);
+  final homeViewModel = HomeViewModel.getInstance();
+
+  HomeScreen();
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -16,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   
-  List<Widget> _screenList = <Widget>[
+  final List<Widget> _screenList = <Widget>[
     RecipesScreen(),
     FavoritesScreen(),
     JokeScreen()
