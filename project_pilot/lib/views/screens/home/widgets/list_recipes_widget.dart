@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 
-import 'package:project_pilot/view_models/home/recipes_viewmodel.dart';
+import 'package:project_pilot/ViewModels/home/recipes_viewmodel.dart';
 import 'package:project_pilot/views/screens/detail_screen.dart';
 
 class ListRecipesWidget extends StatefulWidget {
-  RecipesViewModel recipesViewModel;
+  late RecipesViewModel recipesViewModel;
+
 
   ListRecipesWidget(this.recipesViewModel);
+
+
 
   @override
   _ListRecipesWidgetState createState() => _ListRecipesWidgetState();
 }
 
 class _ListRecipesWidgetState extends State<ListRecipesWidget> {
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -72,11 +76,11 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 16)),
                       Html(
-                        data: widget
-                            .recipesViewModel.streamData.value[index].description,
+                        data: widget.recipesViewModel.streamData.value[index]
+                            .description,
                         style: {
                           "*": Style(
-                              color: CustomColor.iconGray,
+                              color: CustomColor.gray,
                               fontSize: FontSize(14),
                               maxLines: 3,
                               margin: EdgeInsets.all(0))
@@ -84,7 +88,6 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 10)),
                       Row(
-
                         children: [
                           Column(
                             children: [

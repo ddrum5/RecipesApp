@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_pilot/view_models/detail/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 import 'package:project_pilot/views/screens/detail/ingredients_screen.dart';
 import 'package:project_pilot/views/screens/detail/instructions_screen.dart';
 import 'package:project_pilot/views/screens/detail/overview_screen.dart';

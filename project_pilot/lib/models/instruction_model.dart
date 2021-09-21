@@ -1,5 +1,5 @@
 class InstructionModel {
-  String? step;
+  String step ="";
 
   InstructionModel.fromJson(Map<String, dynamic> jsonData) {
     this.step = jsonData['step'];

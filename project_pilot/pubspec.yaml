@@ -20,8 +20,9 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   http: 0.13.3
-  flutter_search_bar: ^2.1.0
   flutter_native_splash: ^1.2.3
+
+
 
 flutter_native_splash:
   image: assets/images/splash_screen.png
@@ -36,11 +37,9 @@ dev_dependencies:
     sdk: flutter
 
 
-# run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
-
 flutter:
   uses-material-design: true
-  generate: true
+
 
   assets:
     - assets/images/

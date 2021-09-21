@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/view_models/detail/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 
 class OverviewWidget extends StatefulWidget {
   DetailsViewModel overviewViewModel;
@@ -180,7 +180,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
         padding: EdgeInsets.only(top: 24, left: 16, right: 16),
         child: Text(
           "Description",
-          style: TextStyle(fontSize: 12, color: CustomColor.iconGray),
+          style: TextStyle(fontSize: 12, color: CustomColor.gray),
         ),
       ),
       Container(
@@ -191,7 +191,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
             "*": Style(
                 color: CustomColor.grayDark,
                 fontSize: FontSize(16),
-                fontFamily: "Roboto-Regular",
+                fontFamily: "robotoRegular",
                 margin: EdgeInsets.all(0))
           },
 

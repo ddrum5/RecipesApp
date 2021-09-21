@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_pilot/view_models/detail/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 import 'package:project_pilot/views/screens/detail/widgets/overview_widget.dart';
 
 class OverviewScreen extends StatefulWidget {

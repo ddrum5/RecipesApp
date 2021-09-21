@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/models/ingredient_model.dart';
-import 'package:project_pilot/view_models/detail/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 
 class IngredientsScreen extends StatefulWidget {
   DetailsViewModel _detailsViewModel;
@@ -25,7 +25,6 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     side: BorderSide(width: 1, color: CustomColor.grayLite)),
-                elevation: 10,
                 margin: EdgeInsets.only(top: 16, right: 16, left: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -45,8 +44,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                                         ._detailsViewModel
                                         .streamIngredients
                                         .value[index]
-                                        .imageUrl ??
-                                    ""),
+                                        .imageUrl),
                                 fit: BoxFit.cover,
                               ))),
                     ),
@@ -60,16 +58,14 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                               children: [
                                 Text(
                                   widget._detailsViewModel.streamIngredients
-                                          .value[index].name ??
-                                      "",
+                                          .value[index].name ,
                                   maxLines: 2,
                                   style: TextStyle(fontSize: 25),
                                 ),
                                 Padding(padding: EdgeInsets.only(bottom: 16)),
                                 Text(
                                   widget._detailsViewModel.streamIngredients
-                                          .value[index].original ??
-                                      "",
+                                          .value[index].original ,
                                   maxLines: 3,
                                   style: TextStyle(
                                       fontSize: 14,

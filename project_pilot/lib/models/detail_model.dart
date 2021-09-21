@@ -7,5 +7,4 @@ class DetailsModel {
   List<IngredientModel> ingredientModels =[];
   List<InstructionModel> instructionModels =[];
 
-
 }

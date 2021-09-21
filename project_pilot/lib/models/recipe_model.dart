@@ -7,14 +7,6 @@ class RecipeModel {
   String? description;
   int? likesNumber;
 
-  RecipeModel(
-      this.id,
-        this.isVegan,
-        this.title,
-        this.likesNumber,
-        this.description,
-        this.imageUrl,
-        this.readyInMinutes);
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/view_models/home_viewmodel.dart';
+import 'package:project_pilot/ViewModels/home_viewmodel.dart';
 import 'package:project_pilot/views/screens/home/favorites_screen.dart';
 import 'package:project_pilot/views/screens/home/joke_screen.dart';
 import 'package:project_pilot/views/screens/home/recipes_screen.dart';

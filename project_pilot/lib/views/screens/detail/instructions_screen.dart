@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/models/instruction_model.dart';
-import 'package:project_pilot/view_models/detail/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 
 class InstructionsScreen extends StatefulWidget {
   DetailsViewModel _detailsViewModel;
@@ -25,7 +25,6 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     side: BorderSide(width: 1, color: CustomColor.grayLite)),
-                elevation: 10,
                 margin: EdgeInsets.only(top: 16, right: 16, left: 16),
                 child: Container(
                     padding: EdgeInsets.all(16),
@@ -35,7 +34,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                           children: [
                             Icon(
                               Icons.check_circle,
-                              color: CustomColor.shamrockGreen,
+                              color: CustomColor.green,
                               size: 20,
                             ),
                             Padding(padding: EdgeInsets.only(right: 16)),
@@ -52,7 +51,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                                   "Lorem Ipsum",
                                   style: TextStyle(
                                       fontSize: 25,
-                                      color: CustomColor.shamrockGreen),
+                                      color: CustomColor.green),
                                 ),
                               ],
                             ),
@@ -61,8 +60,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                         Padding(padding: EdgeInsets.only(bottom: 16)),
                         Text(
                             widget._detailsViewModel.streamInstructions
-                                    .value[index].step ??
-                                "",
+                                    .value[index].step,
                             style: TextStyle(
                                 fontSize: 16, color: CustomColor.grayDark))
                       ],

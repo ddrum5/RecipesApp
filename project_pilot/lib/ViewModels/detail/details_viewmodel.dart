@@ -22,11 +22,14 @@ class DetailsViewModel {
   void getOverViewData(int id) async {
     var data = await response.getDetailRecipeData(id);
     streamOverView.sink.add(data.overviewModel!);
-    streamIngredients.sink.add(data.ingredientModels!);
-    streamInstructions.sink.add(data.instructionModels!);
+    streamIngredients.sink.add(data.ingredientModels);
+    streamInstructions.sink.add(data.instructionModels);
   }
 
 
   void dispose() {
+    streamInstructions.close();
+    streamOverView.close();
+    streamIngredients.close();
   }
 }
