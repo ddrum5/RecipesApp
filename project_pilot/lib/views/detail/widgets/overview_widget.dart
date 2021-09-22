@@ -79,7 +79,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                     Icon(
                       Icons.check_circle,
                       color: CustomColor.isDisableColor(widget
-                          .overviewViewModel.streamOverView.value.vegan as bool),
+                          .overviewViewModel.streamOverView.value.vegan ?? false),
                       size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(right: 10)),
@@ -95,7 +95,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                           .overviewViewModel
                           .streamOverView
                           .value
-                          .vegetarian as bool),
+                          .vegetarian ?? false),
                       size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(right: 10)),
@@ -115,7 +115,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                           .overviewViewModel
                           .streamOverView
                           .value
-                          .dairyFree as bool),
+                          .dairyFree ?? false),
                       size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(right: 10)),
@@ -164,7 +164,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                     Icon(
                       Icons.check_circle,
                       color: CustomColor.isDisableColor(widget
-                          .overviewViewModel.streamOverView.value.cheap as bool),
+                          .overviewViewModel.streamOverView.value.cheap ?? false),
                       size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(right: 10)),

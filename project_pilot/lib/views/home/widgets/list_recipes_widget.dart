@@ -123,7 +123,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                       .recipesViewModel
                                       .streamData
                                       .value[index]
-                                      .isVegan as bool),
+                                      .isVegan ?? false),
                                   size: 24),
                               Text(
                                 "Vegan",
@@ -133,7 +133,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                       .recipesViewModel
                                       .streamData
                                       .value[index]
-                                      .isVegan as bool),
+                                      .isVegan ?? false),
                                 ),
                               )
                             ],
