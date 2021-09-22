@@ -4,7 +4,7 @@ import 'package:project_pilot/models/instruction_model.dart';
 import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 
 class InstructionsScreen extends StatefulWidget {
-  DetailsViewModel _detailsViewModel;
+  final DetailsViewModel _detailsViewModel;
 
   InstructionsScreen(this._detailsViewModel);
 

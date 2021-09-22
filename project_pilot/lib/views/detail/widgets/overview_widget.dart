@@ -4,7 +4,7 @@ import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 
 class OverviewWidget extends StatefulWidget {
-  DetailsViewModel overviewViewModel;
+  final DetailsViewModel overviewViewModel;
 
   OverviewWidget(this.overviewViewModel);
 
@@ -132,7 +132,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                           .overviewViewModel
                           .streamOverView
                           .value
-                          .glutenFree as bool),
+                          .glutenFree ?? false),
                     ),
                     Padding(padding: EdgeInsets.only(right: 10)),
                     Text("Gluten Free", style: TextStyle(fontSize: 14))
@@ -152,7 +152,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                           .overviewViewModel
                           .streamOverView
                           .value
-                          .veryHealthy as bool),
+                          .veryHealthy?? false),
                     ),
                     Padding(padding: EdgeInsets.only(right: 10)),
                     Text("Healthy", style: TextStyle(fontSize: 14))

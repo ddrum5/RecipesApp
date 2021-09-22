@@ -1,7 +1,10 @@
 import 'dart:ui';
 
-class CustomColor{
+class CustomColor {
   static final Color purplishBlue = Color(0xFF651fff);
+  static final Color blueLight = Color(0xFF854eff);
+  static final Color blueSuperLight = Color(0xFFe5daff);
+
   static final Color brightViolet = Color(0xFFaa00ff);
 
   static final Color green = Color(0xFF00c853);
@@ -11,8 +14,7 @@ class CustomColor{
   static final Color red = Color(0xfff44336);
   static final Color orange = Color(0xffff8f00);
 
-  static Color isDisableColor(bool check){
-    return check ? green:gray;
+  static Color isDisableColor(bool value) {
+    return value ? green : gray;
   }
-
 }

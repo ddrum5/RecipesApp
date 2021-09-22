@@ -3,14 +3,13 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 
 import 'package:project_pilot/ViewModels/home/recipes_viewmodel.dart';
-import 'package:project_pilot/views/screens/detail_screen.dart';
+import 'package:project_pilot/views/detail_screen.dart';
 
 class ListRecipesWidget extends StatefulWidget {
-  late RecipesViewModel recipesViewModel;
 
+  final RecipesViewModel recipesViewModel;
 
   ListRecipesWidget(this.recipesViewModel);
-
 
 
   @override

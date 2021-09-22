@@ -4,7 +4,7 @@ import 'package:project_pilot/models/ingredient_model.dart';
 import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
 
 class IngredientsScreen extends StatefulWidget {
-  DetailsViewModel _detailsViewModel;
+  final DetailsViewModel _detailsViewModel;
 
   IngredientsScreen(this._detailsViewModel);
 

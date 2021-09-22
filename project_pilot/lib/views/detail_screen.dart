@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
-import 'package:project_pilot/views/screens/detail/ingredients_screen.dart';
-import 'package:project_pilot/views/screens/detail/instructions_screen.dart';
-import 'package:project_pilot/views/screens/detail/overview_screen.dart';
+import 'package:project_pilot/views/detail/ingredients_screen.dart';
+import 'package:project_pilot/views/detail/instructions_screen.dart';
+import 'package:project_pilot/views/detail/overview_screen.dart';
 
 class DetailScreen extends StatefulWidget {
-  int id;
-  final _detaislViewModel = DetailsViewModel.getInstance();
+  final int id;
+  final detailsViewModel = DetailsViewModel.getInstance();
   DetailScreen(this.id);
 
   @override
@@ -18,7 +18,7 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget._detaislViewModel.getOverViewData(widget.id);
+    widget.detailsViewModel.getOverViewData(widget.id);
   }
   @override
   Widget build(BuildContext context) {
@@ -67,9 +67,9 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
           body: TabBarView(
             children: [
-              OverviewScreen(widget._detaislViewModel),
-              IngredientsScreen(widget._detaislViewModel),
-              InstructionsScreen(widget._detaislViewModel),
+              OverviewScreen(widget.detailsViewModel),
+              IngredientsScreen(widget.detailsViewModel),
+              InstructionsScreen(widget.detailsViewModel),
             ],
           ),
         ));

@@ -21,7 +21,7 @@ class ResponseData {
   }
 
   final String baseUrl = "https://api.spoonacular.com/recipes";
-  final int randomRecipeNumber = 3;
+  final int randomRecipeNumber = 10;
   final String apiKey = "fad5c78940bf4e53841caf97a0961865";
 
   Networking client = Networking(Client());
@@ -49,7 +49,7 @@ class ResponseData {
   Future<List<RecipeModel>> getRecipesByText(String text) async {
     List<RecipeModel> listRecipes = <RecipeModel>[];
     String url =
-        "$baseUrl"
+        "$baseUrl/complexSearch"
         "?titleMatch=$text"
         "&apiKey=$apiKey"
         "&addRecipeInformation=true";
