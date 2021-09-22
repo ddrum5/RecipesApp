@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/models/item_filter_model.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/network/response_data.dart';
 import 'package:rxdart/rxdart.dart';
@@ -27,9 +26,14 @@ class RecipesViewModel {
     streamData.sink.add(data);
   }
 
-  getRecipesByText({required String text}) async {
+  getSearchRecipes({required String text}) async {
     var data = <RecipeModel>[];
-    data = await response.getRecipesByText(text);
+    data = await response.getSearchRecipes(text);
+    streamData.sink.add(data);
+  }
+  getFilterRecipes({required String dietType, required String mealType}) async {
+    var data = <RecipeModel>[];
+    data = await response.getFilterRecipes(dietType, mealType);
     streamData.sink.add(data);
   }
 
@@ -39,58 +43,43 @@ class RecipesViewModel {
         : isSearching.sink.add(true);
   }
 
-
-  final mealTypes = <ItemFilterModel>[
-    ItemFilterModel('Main Course'),
-    ItemFilterModel('Snack'),
-    ItemFilterModel('Dessert'),
-    ItemFilterModel('Appetizer'),
-    ItemFilterModel('Drink'),
-    ItemFilterModel('Salad'),
-    ItemFilterModel('Finger Food')
+  final mealTypes = [
+    'Main Course',
+    'Snack',
+    'Dessert',
+    'Appetizer',
+    'Drink',
+    'Salad',
+    'Finger Food'
   ];
-  final dietTypes = <ItemFilterModel>[
-    ItemFilterModel('Vegan'),
-    ItemFilterModel('Vegetarian'),
-    ItemFilterModel('Ketogenic'),
-    ItemFilterModel('Dairy Free'),
-    ItemFilterModel('GlutenFree'),
-    ItemFilterModel('Paleo'),
-    ItemFilterModel('Lacto-Vegetarian'),
-  ];
-
-  final recipeTypes = <ItemFilterModel>[
-    ItemFilterModel('All'),
-    ItemFilterModel('Newest'),
-    ItemFilterModel('Top Rate'),
-    ItemFilterModel('Most Popular'),
-    ItemFilterModel('Trendy'),
-    ItemFilterModel('Most Like'),
+  final dietTypes = [
+    'Vegan',
+    'Vegetarian',
+    'Ketogenic',
+    'Dairy Free',
+    'Gluten Free',
+    'Paleo',
+    'Lacto-Vegetarian'
   ];
 
-  final mealFilters = <String>[];
-  final dietFilters = <String>[];
+  final recipeTypes = [
+    'All',
+    'Newest',
+    'Top Rate',
+    'Most Popular',
+    'Trendy',
+    'Most Like'
+  ];
+
+  String mealFilter = '';
+  String dietFilter = '';
   final recipeFilters = <String>[];
 
   mealFilterState(String element, bool value) {
-    mealTypes.where((item) => item.isSelected = value);
-    if (value) {
-      mealFilters.add(element);
-    } else {
-      mealFilters.removeWhere((item) {
-        return item == element;
-      });
-    }
+    value ? mealFilter = element : mealFilter = '';
   }
-
   void dietFilterState(String element, bool value) {
-    if (value) {
-      dietFilters.add(element);
-    } else {
-      dietFilters.removeWhere((item) {
-        return item == element;
-      });
-    }
+    value ? dietFilter = element : dietFilter = '';
   }
 
   void recipeFilterState(String element, bool value) {
@@ -102,8 +91,6 @@ class RecipesViewModel {
       });
     }
   }
-  
-
 
   void dispose() {
     streamData.close();

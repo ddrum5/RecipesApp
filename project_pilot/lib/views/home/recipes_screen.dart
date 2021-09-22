@@ -21,7 +21,6 @@ class _RecipesScreen extends State<RecipesScreen> {
     super.initState();
     widget.recipesViewModel.getRandomRecipes();
   }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
@@ -34,7 +33,7 @@ class _RecipesScreen extends State<RecipesScreen> {
                   ? Text('Recipes')
                   : TextField(
                       onSubmitted: (text) {
-                        widget.recipesViewModel.getRecipesByText(text: text);
+                        widget.recipesViewModel.getSearchRecipes(text: text);
                         widget.recipesViewModel.changeSearchState();
                       },
                       decoration: InputDecoration(

@@ -6,29 +6,27 @@ class FilterRecipes extends StatefulWidget {
   final RecipesViewModel viewModel;
 
   FilterRecipes(this.viewModel);
+
   @override
   _FilterRecipesState createState() => _FilterRecipesState();
 }
 
 class _FilterRecipesState extends State<FilterRecipes> {
-
   Iterable<Widget> get itemFilters sync* {
-    for (var i = 0; i < widget.viewModel.recipeTypes.length; i++) {
-      var element = widget.viewModel.recipeTypes.elementAt(i);
+    for (var element in widget.viewModel.recipeTypes) {
       yield Padding(
         padding: const EdgeInsets.all(4.0),
         child: FilterChip(
-          label: Text(element.title),
+          label: Text(element),
           selected: widget.viewModel.recipeFilters.contains(element),
-          labelStyle: element.isSelected
+          labelStyle: widget.viewModel.recipeFilters.contains(element)
               ? TextStyle(color: CustomColor.blueLight)
               : TextStyle(color: CustomColor.grayDark),
           checkmarkColor: CustomColor.blueLight,
           selectedColor: CustomColor.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
-              widget.viewModel.dietFilterState(element.title, value);
-              widget.viewModel.recipeTypes.elementAt(i).isSelected = value;
+              widget.viewModel.recipeFilterState(element, value);
             });
           },
         ),
@@ -45,9 +43,15 @@ class _FilterRecipesState extends State<FilterRecipes> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Filter',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            Row(
+              children: [
+                Icon(Icons.filter_list),
+                Padding(padding: EdgeInsets.all(3)),
+                Text(
+                  'Filter',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ],
             ),
             Padding(padding: EdgeInsets.all(5)),
             Wrap(
@@ -56,11 +60,14 @@ class _FilterRecipesState extends State<FilterRecipes> {
             Padding(padding: EdgeInsets.all(10)),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
+                primary: CustomColor.purplishBlue,
                   minimumSize: Size(double.infinity,
                       60) // double.infinity is the width and 30 is the height
-              ),
+                  ),
               child: Text('APPLY'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             )
           ],
         ),

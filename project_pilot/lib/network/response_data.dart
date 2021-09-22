@@ -46,7 +46,7 @@ class ResponseData {
     }
   }
 
-  Future<List<RecipeModel>> getRecipesByText(String text) async {
+  Future<List<RecipeModel>> getSearchRecipes(String text) async {
     List<RecipeModel> listRecipes = <RecipeModel>[];
     String url =
         "$baseUrl/complexSearch"
@@ -67,24 +67,26 @@ class ResponseData {
     }
   }
 
-  /*Future<List<RecipeModel>> getRecipesByFilter(String text) async {
+  Future<List<RecipeModel>> getFilterRecipes(String dietType, String mealType) async {
     List<RecipeModel> listRecipes = <RecipeModel>[];
-    String url = "$baseUrl/random"
-        "?number=$recipeNumber"
-        "&apiKey=$apiKey";
+    String url = "$baseUrl/complexSearch"
+        "?diet=$dietType"
+        "&type=$mealType"
+        "&apiKey=$apiKey"
+        "&addRecipeInformation=true";
     try {
       final response =
       await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        var results = jsonData['recipes'] as List<dynamic>;
+        var results = jsonData['results'] as List<dynamic>;
         listRecipes = results.map((e) => RecipeModel.fromJson(e)).toList();
       }
       return listRecipes;
     } catch (e) {
       throw Exception(e);
     }
-  }*/
+  }
 
 
 
