@@ -33,6 +33,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
       );
     }
   }
+
   Iterable<Widget> get itemDiets sync* {
     for (var element in widget.viewModel.dietTypes) {
       yield Padding(
@@ -54,50 +55,53 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 27, horizontal: 16),
-      child: Wrap(children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Meal type',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            Padding(padding: EdgeInsets.all(5)),
-            Wrap(
-              children: itemMeals.toList(),
-            ),
-            Padding(padding: EdgeInsets.all(10)),
-            Text(
-              'Diet type',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            Padding(padding: EdgeInsets.all(5)),
-            Wrap(
-              children: itemDiets.toList(),
-            ),
-            Padding(padding: EdgeInsets.all(10)),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: CustomColor.purplishBlue,
-                  minimumSize: Size(double.infinity,
-                      60) // double.infinity is the width and 30 is the height
-                  ),
-              child: Text('APPLY'),
-              onPressed: () {
-                setState(() {
-                  widget.viewModel.getFilterRecipes(
-                      dietType: widget.viewModel.dietFilter,
-                      mealType: widget.viewModel.mealFilter);
-                });
-                Navigator.pop(context);
-              },
-            )
-          ],
-        ),
-      ]),
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 27, horizontal: 16),
+        child: Wrap(children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('Meal type',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              Padding(padding: EdgeInsets.all(5)),
+              Wrap(
+                children: itemMeals.toList(),
+              ),
+              Padding(padding: EdgeInsets.all(10)),
+              Text(
+                'Diet type',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Padding(padding: EdgeInsets.all(5)),
+              Wrap(
+                children: itemDiets.toList(),
+              ),
+              Padding(padding: EdgeInsets.all(10)),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: CustomColor.purplishBlue,
+                    minimumSize: Size(double.infinity,
+                        60) // double.infinity is the width and 30 is the height
+                    ),
+                child: Text('APPLY'),
+                onPressed: () {
+                  setState(() {
+                    widget.viewModel.getFilterRecipes(
+                        dietType: widget.viewModel.dietFilter,
+                        mealType: widget.viewModel.mealFilter);
+                  });
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }
