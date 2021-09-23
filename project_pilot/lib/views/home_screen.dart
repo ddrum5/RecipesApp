@@ -9,13 +9,17 @@ class HomeScreen extends StatefulWidget {
 
   final homeViewModel = HomeViewModel.getInstance();
 
-  HomeScreen();
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   
   final List<Widget> _screenList = <Widget>[
     RecipesScreen(),

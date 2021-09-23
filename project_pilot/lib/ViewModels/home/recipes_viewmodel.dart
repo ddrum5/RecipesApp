@@ -1,6 +1,6 @@
 
 import 'package:project_pilot/models/recipe_model.dart';
-import 'package:project_pilot/network/response_data.dart';
+import 'package:project_pilot/BusinessLayers/network/response_data.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecipesViewModel {

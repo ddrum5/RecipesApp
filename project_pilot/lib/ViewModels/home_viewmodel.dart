@@ -1,8 +1,7 @@
 
 import 'package:rxdart/rxdart.dart';
 
-class HomeViewModel{
-
+class HomeViewModel {
   static HomeViewModel? _homeViewModel;
 
   static HomeViewModel getInstance() {
@@ -12,17 +11,19 @@ class HomeViewModel{
     return _homeViewModel!;
   }
 
-  BehaviorSubject<int> currentScreenIndex=BehaviorSubject<int>();
-  HomeViewModel(){
+  BehaviorSubject<int> currentScreenIndex = BehaviorSubject<int>();
+
+  HomeViewModel() {
     currentScreenIndex.sink.add(0);
   }
-  void onItemTapped(int index){
+
+  void onItemTapped(int index) {
     currentScreenIndex.sink.add(index);
   }
 
-void dispose(){
+  void dispose() {
     currentScreenIndex.close();
-}
-}
+  }
 
 
+}

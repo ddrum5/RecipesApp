@@ -25,7 +25,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
           Image.network(
             widget.overviewViewModel.streamOverView.value.image.toString(),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 3.8,
+            height: 240,
             fit: BoxFit.cover,
           ),
           Positioned(
@@ -35,7 +35,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                 children: [
                   Column(
                     children: [
-                      Icon(Icons.favorite, size: 24, color: Colors.white),
+                      Icon(Icons.favorite, size: 24, color: Colors.white,),
                       Text(
                         widget.overviewViewModel.streamOverView.value.aggregateLikes
                             .toString(),

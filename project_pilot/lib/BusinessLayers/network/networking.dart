@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:http/http.dart';
-import 'package:project_pilot/network/request_type.dart';
+import 'package:project_pilot/BusinessLayers/network/request_type.dart';
 
 
 class Networking {

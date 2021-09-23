@@ -21,60 +21,65 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
           return ListView.builder(
             itemCount: widget._detailsViewModel.streamIngredients.value.length,
             itemBuilder: (context, index) {
-              return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    side: BorderSide(width: 1, color: CustomColor.grayLite)),
-                margin: EdgeInsets.only(top: 16, right: 16, left: 16),
+              return Container(
+                margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: CustomColor.grayLite,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      flex: 1,
-                      child: Container(
-                          height: 123,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(15),
-                                  topLeft: Radius.circular(15)),
-                              image: DecorationImage(
-                                image: NetworkImage(widget
-                                        ._detailsViewModel
-                                        .streamIngredients
-                                        .value[index]
-                                        .imageUrl),
-                                fit: BoxFit.cover,
-                              ))),
-                    ),
-                    Expanded(
-                        flex: 2,
+                      flex: 3,
                         child: Container(
-                          padding: EdgeInsets.all(16),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Column(
-                              children: [
-                                Text(
-                                  widget._detailsViewModel.streamIngredients
-                                          .value[index].name ,
-                                  maxLines: 2,
-                                  style: TextStyle(fontSize: 25),
-                                ),
-                                Padding(padding: EdgeInsets.only(bottom: 16)),
-                                Text(
-                                  widget._detailsViewModel.streamIngredients
-                                          .value[index].original ,
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: CustomColor.grayDark),
-                                ),
-                              ],
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                topLeft: Radius.circular(15)),
+                            image: DecorationImage(
+                              image: NetworkImage(widget._detailsViewModel
+                                  .streamIngredients.value[index].imageUrl),
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ))
+                        ),
+                      ),
+                    Container(
+                      height: 111,
+                      width: 1,
+                      color: CustomColor.grayLite,
+                    ),
+
+                    Expanded(
+                      flex: 7,
+                      child: Container(
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget._detailsViewModel.streamIngredients
+                                  .value[index].name,
+                              maxLines: 1,
+                              style: TextStyle(fontSize: 25),
+                            ),
+                            Padding(padding: EdgeInsets.only(bottom: 16)),
+                            Text(
+                              widget._detailsViewModel.streamIngredients
+                                  .value[index].original,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: 14, color: CustomColor.grayDark),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
               );

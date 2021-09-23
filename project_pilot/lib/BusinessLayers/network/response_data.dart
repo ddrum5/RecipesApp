@@ -6,8 +6,8 @@ import 'package:project_pilot/models/ingredient_model.dart';
 import 'package:project_pilot/models/instruction_model.dart';
 import 'package:project_pilot/models/overview_model.dart';
 import 'package:project_pilot/models/recipe_model.dart';
-import 'package:project_pilot/network/networking.dart';
-import 'package:project_pilot/network/request_type.dart';
+import 'package:project_pilot/BusinessLayers/network/networking.dart';
+import 'package:project_pilot/BusinessLayers/network/request_type.dart';
 
 class ResponseData {
 

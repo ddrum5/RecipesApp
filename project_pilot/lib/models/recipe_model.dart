@@ -1,12 +1,19 @@
-class RecipeModel {
-  late int id;
-  bool? isVegan;
-  String? title;
-  int? readyInMinutes;
-  String? imageUrl;
-  String? description;
-  int? likesNumber;
+import 'package:floor/floor.dart';
 
+@Entity(tableName: 'Recipe')
+class RecipeModel {
+  @primaryKey
+  int id=0;
+  bool isVegan=false;
+  String title ='';
+  int readyInMinutes =0;
+  String imageUrl= '';
+  String description ='';
+  int likesNumber =0;
+
+
+  RecipeModel(this.id, this.isVegan, this.title, this.readyInMinutes,
+      this.imageUrl, this.description, this.likesNumber);
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];

@@ -21,7 +21,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: 0.13.3
   flutter_native_splash: ^1.2.3
+  floor: ^1.2.0
+  floor_generator: ^1.2.0
+  build_runner: ^2.1.2
 
+
+
+  path_provider: ^2.0.5
+
+  permission_handler: ^8.1.6
 
 
 flutter_native_splash:
