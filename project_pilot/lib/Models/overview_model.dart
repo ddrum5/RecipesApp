@@ -1,15 +1,15 @@
 class OverviewModel {
-  String? image;
-  int? aggregateLikes;
-  int? readyInMinutes;
-  String? title;
-  bool? vegan;
-  bool? vegetarian;
-  bool? dairyFree;
-  bool? glutenFree;
-  bool? veryHealthy;
-  bool? cheap;
-  String? summary;
+  String image = '';
+  int aggregateLikes = 0;
+  int readyInMinutes = 0;
+  String title = '';
+  bool vegan = false;
+  bool vegetarian = false;
+  bool dairyFree = false;
+  bool glutenFree = false;
+  bool veryHealthy=false;
+  bool cheap= false;
+  String summary = '';
 
   OverviewModel.fromJson(Map<String, dynamic> json) {
     this.image=json['image'];

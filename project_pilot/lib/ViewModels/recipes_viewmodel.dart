@@ -1,6 +1,5 @@
-
 import 'package:project_pilot/models/recipe_model.dart';
-import 'package:project_pilot/BusinessLayers/network/response_data.dart';
+import 'package:project_pilot/BusinessLayers/network/recipes_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecipesViewModel {
@@ -17,9 +16,9 @@ class RecipesViewModel {
   var streamData = BehaviorSubject<List<RecipeModel>>();
   var isSearching = BehaviorSubject<bool>();
 
-  var response = ResponseData.getInstance();
+  var response = RecipeSecives.getInstance();
 
-  getRandomRecipes() async {
+  void getRandomRecipes() async {
     var data = <RecipeModel>[];
     data = await response.getRandomRecipes();
     streamData.sink.add(data);
@@ -30,6 +29,7 @@ class RecipesViewModel {
     data = await response.getSearchRecipes(text);
     streamData.sink.add(data);
   }
+
   getFilterRecipes({required String dietType, required String mealType}) async {
     var data = <RecipeModel>[];
     data = await response.getFilterRecipes(dietType, mealType);
@@ -77,6 +77,7 @@ class RecipesViewModel {
   mealFilterState(String element, bool value) {
     value ? mealFilter = element : mealFilter = '';
   }
+
   void dietFilterState(String element, bool value) {
     value ? dietFilter = element : dietFilter = '';
   }

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/ViewModels/home/recipes_viewmodel.dart';
-import 'package:project_pilot/views/home/widgets/filter_recipes_type.dart';
-import 'package:project_pilot/views/home/widgets/filter_ricpies.dart';
-import 'package:project_pilot/views/home/widgets/list_recipes_widget.dart';
+import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
+import 'package:project_pilot/views/widgets/filter_recipes_type.dart';
+import 'package:project_pilot/views/widgets/filter_ricpies.dart';
+import 'package:project_pilot/views/widgets/list_recipes_widget.dart';
+import 'package:project_pilot/views/widgets/message_widget.dart';
 
 class RecipesScreen extends StatefulWidget {
   final RecipesViewModel recipesViewModel = RecipesViewModel.getInstance();
@@ -14,13 +15,12 @@ class RecipesScreen extends StatefulWidget {
 }
 
 class _RecipesScreen extends State<RecipesScreen> {
-  bool isSearching = false;
-
   @override
   void initState() {
     super.initState();
     widget.recipesViewModel.getRandomRecipes();
   }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
@@ -89,8 +89,13 @@ class _RecipesScreen extends State<RecipesScreen> {
               child: StreamBuilder(
                 stream: widget.recipesViewModel.streamData,
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListRecipesWidget(widget.recipesViewModel);
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    if (widget.recipesViewModel.streamData.value.isNotEmpty) {
+                      return ListRecipesWidget(
+                          widget.recipesViewModel.streamData);
+                    } else {
+                      return MessageWidget('No recipe data');
+                    }
                   } else {
                     return Center(
                       child: CircularProgressIndicator(),

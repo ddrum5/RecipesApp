@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/ViewModels/home/recipes_viewmodel.dart';
-import 'package:project_pilot/views/detail_screen.dart';
+import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Views/detail/detail_screen.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ListRecipesWidget extends StatefulWidget {
-  final RecipesViewModel recipesViewModel;
+  final BehaviorSubject<List<RecipeModel>> streamListRecipes;
 
-  ListRecipesWidget(this.recipesViewModel);
+  ListRecipesWidget(this.streamListRecipes);
 
   @override
   _ListRecipesWidgetState createState() => _ListRecipesWidgetState();
@@ -18,15 +21,19 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.recipesViewModel.streamData.value.length,
+      itemCount: widget.streamListRecipes.value.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => DetailScreen(
-                        widget.recipesViewModel.streamData.value[index].id)));
+              context,
+              MaterialPageRoute(
+                builder: (_) => DetailScreen(
+                  widget.streamListRecipes.value[index],
+                  DetailsViewModel(),
+                ),
+              ),
+            );
           },
           child: Container(
             margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -45,15 +52,19 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                   child: Container(
                     width: 182,
                     height: 218,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(widget.recipesViewModel.streamData.value[index]
-                            .imageUrl),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.streamListRecipes.value[index].imageUrl,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomLeft: Radius.circular(12)),
+                        ),
                       ),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          bottomLeft: Radius.circular(12)),
                     ),
                   ),
                 ),
@@ -64,16 +75,19 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                       children: [
                         Align(
                           child: Text(
-                            widget.recipesViewModel.streamData.value[index].title,
+                            widget.streamListRecipes.value[index].title,
                             maxLines: 2,
-                            style: TextStyle(fontSize: 25, fontFamily: 'robotoMedium', ),
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontFamily: 'robotoMedium',
+                            ),
                           ),
                           alignment: Alignment.centerLeft,
                         ),
                         Padding(padding: EdgeInsets.only(bottom: 16)),
                         Html(
-                          data: widget.recipesViewModel.streamData.value[index]
-                              .description,
+                          data:
+                              widget.streamListRecipes.value[index].description,
                           style: {
                             "*": Style(
                                 color: CustomColor.gray,
@@ -90,7 +104,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                 Icon(Icons.favorite,
                                     color: CustomColor.red, size: 24),
                                 Text(
-                                  widget.recipesViewModel.streamData.value[index]
+                                  widget.streamListRecipes.value[index]
                                       .likesNumber
                                       .toString(),
                                   style: TextStyle(
@@ -104,7 +118,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                 Icon(Icons.schedule,
                                     color: CustomColor.orange, size: 24),
                                 Text(
-                                  widget.recipesViewModel.streamData.value[index]
+                                  widget.streamListRecipes.value[index]
                                       .readyInMinutes
                                       .toString(),
                                   style: TextStyle(
@@ -117,8 +131,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                               children: [
                                 Icon(Icons.eco,
                                     color: CustomColor.isDisableColor(widget
-                                        .recipesViewModel
-                                        .streamData
+                                        .streamListRecipes
                                         .value[index]
                                         .isVegan),
                                     size: 24),
@@ -127,8 +140,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: CustomColor.isDisableColor(widget
-                                        .recipesViewModel
-                                        .streamData
+                                        .streamListRecipes
                                         .value[index]
                                         .isVegan),
                                   ),

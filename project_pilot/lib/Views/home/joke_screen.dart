@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class JokeScreen extends StatelessWidget {
   const JokeScreen({Key? key}) : super(key: key);
@@ -9,15 +11,19 @@ class JokeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Joke"),
         actions: [
-          Icon(Icons.share),
-          Padding(padding: EdgeInsets.only(right: 20)),
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () {
+              Share.share('check out my youtube channel https://youtube.com/c/ddrum_16');
+            },
+          ),
         ],
       ),
       body: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(15), topLeft: Radius.circular(15)),
-          ),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15), topLeft: Radius.circular(15)),
+        ),
         child: Center(
             child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
@@ -45,6 +51,5 @@ class JokeScreen extends StatelessWidget {
                 ))),
       ),
     );
-
   }
 }

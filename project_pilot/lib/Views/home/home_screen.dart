@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/ViewModels/home_viewmodel.dart';
+import 'package:project_pilot/ViewModels/main_viewmodel.dart';
 import 'package:project_pilot/views/home/favorites_screen.dart';
 import 'package:project_pilot/views/home/joke_screen.dart';
 import 'package:project_pilot/views/home/recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
 
-  final homeViewModel = HomeViewModel.getInstance();
+  final MainViewModel mainViewModel;
+
+  HomeScreen(this.mainViewModel);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,15 +18,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+
   
   final List<Widget> _screenList = <Widget>[
     RecipesScreen(),
-    FavoritesScreen(),
+    FavoritesScreen(FavoritesViewModel()),
     JokeScreen()
   ];
 
@@ -31,20 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: StreamBuilder<int>(
-          stream: widget.homeViewModel.currentScreenIndex,
+          stream: widget.mainViewModel.currentScreenIndex,
           builder: (context, snapshot) {
             return Center(
               child: _screenList
-                  .elementAt(widget.homeViewModel.currentScreenIndex.value),
+                  .elementAt(widget.mainViewModel.currentScreenIndex.value),
             );
           },
         ),
         bottomNavigationBar: StreamBuilder<int>(
-          stream: widget.homeViewModel.currentScreenIndex,
+          stream: widget.mainViewModel.currentScreenIndex,
           builder: (context, snapshot) {
             return BottomNavigationBar(
-              currentIndex: widget.homeViewModel.currentScreenIndex.value,
-              onTap: widget.homeViewModel.onItemTapped,
+              currentIndex: widget.mainViewModel.currentScreenIndex.value,
+              onTap: widget.mainViewModel.onItemTapped,
               selectedItemColor: CustomColor.purplishBlue,
               items: [
                 BottomNavigationBarItem(

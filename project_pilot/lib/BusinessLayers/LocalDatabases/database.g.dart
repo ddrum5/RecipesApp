@@ -61,7 +61,7 @@ class _$FlutterDatabase extends FlutterDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  RecipeDao? _recipeDaoInstance;
+  FavoriteRecipeDao? _recipeDaoInstance;
 
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
@@ -82,7 +82,7 @@ class _$FlutterDatabase extends FlutterDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Recipe` (`id` INTEGER NOT NULL, `isVegan` INTEGER NOT NULL, `title` TEXT NOT NULL, `readyInMinutes` INTEGER NOT NULL, `imageUrl` TEXT NOT NULL, `description` TEXT NOT NULL, `likesNumber` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `FavoriteRecipes` (`id` INTEGER NOT NULL, `isVegan` INTEGER NOT NULL, `title` TEXT NOT NULL, `readyInMinutes` INTEGER NOT NULL, `imageUrl` TEXT NOT NULL, `description` TEXT NOT NULL, `likesNumber` INTEGER NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -91,17 +91,17 @@ class _$FlutterDatabase extends FlutterDatabase {
   }
 
   @override
-  RecipeDao get recipeDao {
-    return _recipeDaoInstance ??= _$RecipeDao(database, changeListener);
+  FavoriteRecipeDao get recipeDao {
+    return _recipeDaoInstance ??= _$FavoriteRecipeDao(database, changeListener);
   }
 }
 
-class _$RecipeDao extends RecipeDao {
-  _$RecipeDao(this.database, this.changeListener)
+class _$FavoriteRecipeDao extends FavoriteRecipeDao {
+  _$FavoriteRecipeDao(this.database, this.changeListener)
       : _queryAdapter = QueryAdapter(database, changeListener),
         _recipeModelInsertionAdapter = InsertionAdapter(
             database,
-            'Recipe',
+            'FavoriteRecipes',
             (RecipeModel item) => <String, Object?>{
                   'id': item.id,
                   'isVegan': item.isVegan ? 1 : 0,
@@ -114,7 +114,7 @@ class _$RecipeDao extends RecipeDao {
             changeListener),
         _recipeModelUpdateAdapter = UpdateAdapter(
             database,
-            'Recipe',
+            'FavoriteRecipes',
             ['id'],
             (RecipeModel item) => <String, Object?>{
                   'id': item.id,
@@ -128,7 +128,7 @@ class _$RecipeDao extends RecipeDao {
             changeListener),
         _recipeModelDeletionAdapter = DeletionAdapter(
             database,
-            'Recipe',
+            'FavoriteRecipes',
             ['id'],
             (RecipeModel item) => <String, Object?>{
                   'id': item.id,
@@ -155,7 +155,7 @@ class _$RecipeDao extends RecipeDao {
 
   @override
   Future<RecipeModel?> findRecipeById(int id) async {
-    return _queryAdapter.query('SELECT * FROM Recipe WHERE id = ?1',
+    return _queryAdapter.query('SELECT * FROM FavoriteRecipes WHERE id = ?1',
         mapper: (Map<String, Object?> row) => RecipeModel(
             row['id'] as int,
             (row['isVegan'] as int) != 0,
@@ -169,7 +169,7 @@ class _$RecipeDao extends RecipeDao {
 
   @override
   Future<List<RecipeModel>> getAllRecipes() async {
-    return _queryAdapter.queryList('SELECT * FROM Recipe',
+    return _queryAdapter.queryList('SELECT * FROM FavoriteRecipes',
         mapper: (Map<String, Object?> row) => RecipeModel(
             row['id'] as int,
             (row['isVegan'] as int) != 0,
@@ -182,7 +182,7 @@ class _$RecipeDao extends RecipeDao {
 
   @override
   Stream<List<RecipeModel>> getAllRecipesAsStream() {
-    return _queryAdapter.queryListStream('SELECT * FROM Recipe',
+    return _queryAdapter.queryListStream('SELECT * FROM FavoriteRecipes',
         mapper: (Map<String, Object?> row) => RecipeModel(
             row['id'] as int,
             (row['isVegan'] as int) != 0,
@@ -191,8 +191,13 @@ class _$RecipeDao extends RecipeDao {
             row['imageUrl'] as String,
             row['description'] as String,
             row['likesNumber'] as int),
-        queryableName: 'Recipe',
+        queryableName: 'FavoriteRecipes',
         isView: false);
+  }
+
+  @override
+  Future<void> deleteAll() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM FavoriteRecipes');
   }
 
   @override

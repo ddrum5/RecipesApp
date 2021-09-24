@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/models/ingredient_model.dart';
-import 'package:project_pilot/ViewModels/detail/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 
 class IngredientsScreen extends StatefulWidget {
   final DetailsViewModel _detailsViewModel;

@@ -1,16 +1,15 @@
 import 'package:floor/floor.dart';
 
-@Entity(tableName: 'Recipe')
+@Entity(tableName: 'FavoriteRecipes')
 class RecipeModel {
   @primaryKey
-  int id=0;
-  bool isVegan=false;
-  String title ='';
-  int readyInMinutes =0;
-  String imageUrl= '';
-  String description ='';
-  int likesNumber =0;
-
+  int id = 0;
+  bool isVegan = false;
+  String title = '';
+  int readyInMinutes = 0;
+  String imageUrl = '';
+  String description = '';
+  int likesNumber = 0;
 
   RecipeModel(this.id, this.isVegan, this.title, this.readyInMinutes,
       this.imageUrl, this.description, this.likesNumber);

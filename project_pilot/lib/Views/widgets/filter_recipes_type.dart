@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_pilot/ViewModels/home/recipes_viewmodel.dart';
+import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 
 class FilterRecipesType extends StatefulWidget {

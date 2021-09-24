@@ -9,32 +9,31 @@ import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/BusinessLayers/network/networking.dart';
 import 'package:project_pilot/BusinessLayers/network/request_type.dart';
 
-class ResponseData {
+class RecipeSecives {
+  static RecipeSecives? _responseData;
 
-  static ResponseData? _responseData;
-
-  static ResponseData getInstance() {
+  static RecipeSecives getInstance() {
     if (_responseData == null) {
-      _responseData = ResponseData();
+      _responseData = RecipeSecives();
     }
     return _responseData!;
   }
 
   final String baseUrl = "https://api.spoonacular.com/recipes";
   final int randomRecipeNumber = 10;
-  final String apiKey = "fad5c78940bf4e53841caf97a0961865";
+  // 21c22adaa4a1410287cdea8b8d49f86f
+  // be6f7e4d1bfd487e93995dc0b910ce30
+  final String apiKey = "be6f7e4d1bfd487e93995dc0b910ce30";
 
   Networking client = Networking(Client());
 
   Future<List<RecipeModel>> getRandomRecipes() async {
     List<RecipeModel> listRecipes = <RecipeModel>[];
-    String url =
-        "$baseUrl/random"
+    String url = "$baseUrl/random"
         "?number=$randomRecipeNumber"
         "&apiKey=$apiKey";
     try {
-      final response =
-          await client.request(path: url, type: RequestType.GET);
+      final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
         var results = jsonData['recipes'] as List<dynamic>;
@@ -48,14 +47,12 @@ class ResponseData {
 
   Future<List<RecipeModel>> getSearchRecipes(String text) async {
     List<RecipeModel> listRecipes = <RecipeModel>[];
-    String url =
-        "$baseUrl/complexSearch"
+    String url = "$baseUrl/complexSearch"
         "?titleMatch=$text"
         "&apiKey=$apiKey"
         "&addRecipeInformation=true";
     try {
-      final response =
-          await client.request(path: url, type: RequestType.GET);
+      final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
         var results = jsonData['results'] as List<dynamic>;
@@ -67,7 +64,8 @@ class ResponseData {
     }
   }
 
-  Future<List<RecipeModel>> getFilterRecipes(String dietType, String mealType) async {
+  Future<List<RecipeModel>> getFilterRecipes(
+      String dietType, String mealType) async {
     List<RecipeModel> listRecipes = <RecipeModel>[];
     String url = "$baseUrl/complexSearch"
         "?diet=$dietType"
@@ -75,8 +73,7 @@ class ResponseData {
         "&apiKey=$apiKey"
         "&addRecipeInformation=true";
     try {
-      final response =
-      await client.request(path: url, type: RequestType.GET);
+      final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
         var results = jsonData['results'] as List<dynamic>;
@@ -87,9 +84,6 @@ class ResponseData {
       throw Exception(e);
     }
   }
-
-
-
 
   Future<DetailsModel> getDetailRecipeData(int id) async {
     DetailsModel detailsModel = DetailsModel();
@@ -98,26 +92,27 @@ class ResponseData {
         "/information"
         "?apiKey=$apiKey";
     try {
-      final response =
-      await client.request(path: url, type: RequestType.GET);
+      final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        final ingredientsJsonData = jsonData['extendedIngredients'] as List<dynamic>;
-        final analyzedInstructions = jsonData['analyzedInstructions'] as List<dynamic>;
-        final instructionsJsonData = analyzedInstructions[0]['steps'] as List<dynamic>;
+        final ingredientsJsonData =
+            jsonData['extendedIngredients'] as List<dynamic>;
+        final analyzedInstructions =
+            jsonData['analyzedInstructions'] as List<dynamic>;
+        final instructionsJsonData =
+            analyzedInstructions[0]['steps'] as List<dynamic>;
 
         detailsModel.overviewModel = OverviewModel.fromJson(jsonData);
-        detailsModel.ingredientModels = ingredientsJsonData.map((e) => IngredientModel.fromJson(e)).toList() ;
-        detailsModel.instructionModels = instructionsJsonData.map((e) => InstructionModel.fromJson(e)).toList() ;
+        detailsModel.ingredientModels = ingredientsJsonData
+            .map((e) => IngredientModel.fromJson(e))
+            .toList();
+        detailsModel.instructionModels = instructionsJsonData
+            .map((e) => InstructionModel.fromJson(e))
+            .toList();
       }
       return detailsModel;
     } catch (e) {
       throw Exception(e);
     }
   }
-
-
-
-
-
 }
