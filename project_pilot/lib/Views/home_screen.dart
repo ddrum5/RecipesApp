@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
-import 'package:project_pilot/Views/widgets/main_widget_inherited.dart';
+import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/ViewModels/main_viewmodel.dart';
 import 'package:project_pilot/Views/home/favorites_screen.dart';
@@ -9,21 +9,21 @@ import 'package:project_pilot/Views/home/recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final MainViewModel mainViewModel;
+  final FavoritesViewModel favoritesViewModel;
 
-  HomeScreen(this.mainViewModel);
+  HomeScreen(this.mainViewModel, this.favoritesViewModel);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
+
     final homeScreenList = <Widget>[
-      RecipesScreen(),
-      FavoritesScreen(MainWidgetInherited.of(context)!.favoritesViewModel),
+      RecipesScreen(RecipesViewModel(), widget.favoritesViewModel),
+      FavoritesScreen(widget.favoritesViewModel),
       JokeScreen()
     ];
 

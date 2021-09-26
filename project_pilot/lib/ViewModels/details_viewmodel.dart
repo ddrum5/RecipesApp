@@ -5,11 +5,11 @@ import 'package:project_pilot/models/overview_model.dart';
 import 'package:project_pilot/BusinessLayers/network/recipes_service.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:rxdart/rxdart.dart';
-import 'main_viewmodel.dart';
+import 'base_viewmodel.dart';
 
 class DetailsViewModel {
   final response = RecipeSecives.getInstance();
-  final recipeDao = MainViewModel.favoriteRecipeDao;
+  final recipeDao = BaseViewModel.favoriteRecipeDao;
   var streamOverView = BehaviorSubject<OverviewModel>();
   var streamIngredients = BehaviorSubject<List<IngredientModel>>();
   var streamInstructions = BehaviorSubject<List<InstructionModel>>();
@@ -24,6 +24,7 @@ class DetailsViewModel {
     streamOverView.sink.add(data.overviewModel!);
     streamIngredients.sink.add(data.ingredientModels);
     streamInstructions.sink.add(data.instructionModels);
+
     streamIsRecipeExist.listen((value) {
       findRecipeFromDB(id);
       favoritesViewModel.getListRecipesFromLocal();

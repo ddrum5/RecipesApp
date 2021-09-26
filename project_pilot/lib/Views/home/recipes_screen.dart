@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_pilot/Views/widgets/main_widget_inherited.dart';
+import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/views/widgets/filter_recipes_type.dart';
@@ -9,7 +9,10 @@ import 'package:project_pilot/views/widgets/list_recipes_widget.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 
 class RecipesScreen extends StatefulWidget {
-  final RecipesViewModel recipesViewModel = RecipesViewModel.getInstance();
+  final RecipesViewModel recipesViewModel;
+  final FavoritesViewModel favoritesViewModel;
+
+  RecipesScreen(this.recipesViewModel, this.favoritesViewModel);
 
   @override
   _RecipesScreen createState() => _RecipesScreen();
@@ -93,7 +96,8 @@ class _RecipesScreen extends State<RecipesScreen> {
                   if (snapshot.connectionState == ConnectionState.active) {
                     if (widget.recipesViewModel.streamData.value.isNotEmpty) {
                       return ListRecipesWidget(
-                          widget.recipesViewModel.streamData, MainWidgetInherited.of(context)!.favoritesViewModel);
+                          widget.recipesViewModel.streamData,
+                          widget.favoritesViewModel);
                     } else {
                       return DataEmptyWidget('No recipe data');
                     }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
-import 'package:project_pilot/Views/widgets/main_widget_inherited.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/views/detail/ingredients_screen.dart';

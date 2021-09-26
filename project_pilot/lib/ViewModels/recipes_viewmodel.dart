@@ -3,20 +3,19 @@ import 'package:project_pilot/BusinessLayers/network/recipes_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecipesViewModel {
-  static RecipesViewModel? _recipesViewModel;
-
-  static RecipesViewModel getInstance() {
-    if (_recipesViewModel == null) {
-      _recipesViewModel = RecipesViewModel();
-      _recipesViewModel!.isSearching.sink.add(false);
-    }
-    return _recipesViewModel!;
-  }
 
   var streamData = BehaviorSubject<List<RecipeModel>>();
   var isSearching = BehaviorSubject<bool>();
 
+
+  RecipesViewModel() {
+    isSearching.sink.add(false);
+  }
+
   var response = RecipeSecives.getInstance();
+
+
+
 
   void getRandomRecipes() async {
     var data = <RecipeModel>[];
