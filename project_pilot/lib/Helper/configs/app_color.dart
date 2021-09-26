@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class CustomColor {
+class AppColors {
   static final Color purplishBlue = Color(0xFF651fff);
   static final Color blueLight = Color(0xFF854eff);
   static final Color blueSuperLight = Color(0xFFe5daff);

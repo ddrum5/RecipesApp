@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
-import 'package:project_pilot/helper/custom_color.dart';
-
+import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class FilterRecipesType extends StatefulWidget {
   final RecipesViewModel viewModel;
 
@@ -20,10 +20,10 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
           label: Text(element),
           selected: identical(widget.viewModel.mealFilter, element),
           labelStyle: identical(widget.viewModel.mealFilter, element)
-              ? TextStyle(color: CustomColor.blueLight)
-              : TextStyle(color: CustomColor.grayDark),
-          checkmarkColor: CustomColor.blueLight,
-          selectedColor: CustomColor.blueSuperLight,
+              ? TextStyle(color: AppColors.blueLight)
+              : TextStyle(color: AppColors.grayDark),
+          checkmarkColor: AppColors.blueLight,
+          selectedColor: AppColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
               widget.viewModel.mealFilterState(element, value);
@@ -42,10 +42,10 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
           label: Text(element),
           selected: identical(widget.viewModel.dietFilter, element),
           labelStyle: identical(widget.viewModel.dietFilter, element)
-              ? TextStyle(color: CustomColor.blueLight)
-              : TextStyle(color: CustomColor.grayDark),
-          checkmarkColor: CustomColor.blueLight,
-          selectedColor: CustomColor.blueSuperLight,
+              ? TextStyle(color: AppColors.blueLight)
+              : TextStyle(color: AppColors.grayDark),
+          checkmarkColor: AppColors.blueLight,
+          selectedColor: AppColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
               widget.viewModel.dietFilterState(element, value);
@@ -66,7 +66,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Meal type',
+              Text(AppLocalizations.of(context)?.meal??'',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
               Padding(padding: EdgeInsets.all(5)),
               Wrap(
@@ -74,7 +74,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
               ),
               Padding(padding: EdgeInsets.all(10)),
               Text(
-                'Diet type',
+                AppLocalizations.of(context)?.diet??'',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Padding(padding: EdgeInsets.all(5)),
@@ -84,11 +84,11 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
               Padding(padding: EdgeInsets.all(10)),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: CustomColor.purplishBlue,
+                    primary: AppColors.purplishBlue,
                     minimumSize: Size(double.infinity,
                         60) // double.infinity is the width and 30 is the height
                     ),
-                child: Text('APPLY'),
+                child: Text(AppLocalizations.of(context)?.apply??''),
                 onPressed: () {
                   setState(() {
                     widget.viewModel.getFilterRecipesByTypes();

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
-import 'package:project_pilot/helper/custom_theme.dart';
 import 'BusinessLayers/LocalDatabases/database.dart';
+import 'Helper/configs/app_theme.dart';
 import 'ViewModels/base_viewmodel.dart';
 import 'ViewModels/main_viewmodel.dart';
 import 'Views/home_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +27,17 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: CustomTheme.lightMode,
+      localizationsDelegates: [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('vi', ''),
+      ],
+      theme: AppTheme.lightMode,
       home: HomeScreen(MainViewModel(), FavoritesViewModel()),
     );
   }

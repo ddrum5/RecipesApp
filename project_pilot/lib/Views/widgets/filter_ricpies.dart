@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
-import 'package:project_pilot/helper/custom_color.dart';
-
+import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class FilterRecipes extends StatefulWidget {
   final RecipesViewModel viewModel;
 
@@ -20,10 +20,10 @@ class _FilterRecipesState extends State<FilterRecipes> {
           label: Text(element),
           selected: widget.viewModel.recipeFilter.contains(element),
           labelStyle: widget.viewModel.recipeFilter.contains(element)
-              ? TextStyle(color: CustomColor.blueLight)
-              : TextStyle(color: CustomColor.grayDark),
-          checkmarkColor: CustomColor.blueLight,
-          selectedColor: CustomColor.blueSuperLight,
+              ? TextStyle(color: AppColors.blueLight)
+              : TextStyle(color: AppColors.grayDark),
+          checkmarkColor: AppColors.blueLight,
+          selectedColor: AppColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
               widget.viewModel.recipeFilterState(element, value);
@@ -48,7 +48,7 @@ class _FilterRecipesState extends State<FilterRecipes> {
                 Icon(Icons.filter_list),
                 Padding(padding: EdgeInsets.all(3)),
                 Text(
-                  'Filter',
+                  AppLocalizations.of(context)?.filter??'',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ],
@@ -60,11 +60,11 @@ class _FilterRecipesState extends State<FilterRecipes> {
             Padding(padding: EdgeInsets.all(10)),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: CustomColor.purplishBlue,
+                primary: AppColors.purplishBlue,
                   minimumSize: Size(double.infinity,
                       60) // double.infinity is the width and 30 is the height
                   ),
-              child: Text('APPLY'),
+              child: Text(AppLocalizations.of(context)?.apply??''),
               onPressed: () {
                 widget.viewModel.getFilterRecipes();
                 Navigator.pop(context);

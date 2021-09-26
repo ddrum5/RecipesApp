@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
-import 'package:project_pilot/helper/custom_color.dart';
+import 'package:project_pilot/Helper/configs/app_color.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OverviewScreen extends StatefulWidget {
   final DetailsViewModel _detailsViewModel;
@@ -30,7 +31,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
             );
           } else {
             if (!snapshot.hasData) {
-              return DataEmptyWidget('No data');
+              return DataEmptyWidget(AppLocalizations.of(context)?.error ?? '');
             } else {
               return SingleChildScrollView(
                 child: Column(
@@ -59,7 +60,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                     ),
                                     Text(
                                       widget._detailsViewModel.streamOverView
-                                          .value.aggregateLikes.toString(),
+                                          .value.aggregateLikes
+                                          .toString(),
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 14),
                                     )
@@ -102,7 +104,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -118,7 +120,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -139,7 +141,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -157,7 +159,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   Icon(
                                     Icons.check_circle,
                                     size: 20,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -178,7 +180,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   Icon(
                                     Icons.check_circle,
                                     size: 20,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -194,7 +196,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -213,8 +215,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     Container(
                       padding: EdgeInsets.only(top: 24, left: 16, right: 16),
                       child: Text(
-                        "Description",
-                        style: TextStyle(fontSize: 12, color: CustomColor.gray),
+                        AppLocalizations.of(context)?.description ?? '',
+                        style: TextStyle(fontSize: 13, color: AppColors.gray),
                       ),
                     ),
                     Container(
@@ -224,7 +226,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                             ._detailsViewModel.streamOverView.value.summary,
                         style: {
                           "*": Style(
-                              color: CustomColor.grayDark,
+                              color: AppColors.grayDark,
                               fontSize: FontSize(16),
                               fontFamily: "robotoRegular",
                               margin: EdgeInsets.all(0))

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
-import 'package:project_pilot/helper/custom_color.dart';
+import 'package:project_pilot/Helper/configs/app_color.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/Views/detail_screen.dart';
 import 'package:rxdart/rxdart.dart';
@@ -41,7 +41,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
             margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: CustomColor.grayLite,
+                color: AppColors.grayLite,
                 width: 1,
               ),
               borderRadius: BorderRadius.circular(12),
@@ -92,7 +92,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                               widget.streamListRecipes.value[index].description,
                           style: {
                             "*": Style(
-                                color: CustomColor.gray,
+                                color: AppColors.gray,
                                 fontSize: FontSize(14),
                                 maxLines: 3,
                                 margin: EdgeInsets.all(0))
@@ -104,13 +104,13 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                             Column(
                               children: [
                                 Icon(Icons.favorite,
-                                    color: CustomColor.red, size: 24),
+                                    color: AppColors.red, size: 24),
                                 Text(
                                   widget.streamListRecipes.value[index]
                                       .likesNumber
                                       .toString(),
                                   style: TextStyle(
-                                      color: CustomColor.red, fontSize: 14),
+                                      color: AppColors.red, fontSize: 14),
                                 )
                               ],
                             ),
@@ -118,13 +118,13 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                             Column(
                               children: [
                                 Icon(Icons.schedule,
-                                    color: CustomColor.orange, size: 24),
+                                    color: AppColors.orange, size: 24),
                                 Text(
                                   widget.streamListRecipes.value[index]
                                       .readyInMinutes
                                       .toString(),
                                   style: TextStyle(
-                                      color: CustomColor.orange, fontSize: 14),
+                                      color: AppColors.orange, fontSize: 14),
                                 )
                               ],
                             ),
@@ -132,7 +132,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                             Column(
                               children: [
                                 Icon(Icons.eco,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         .streamListRecipes
                                         .value[index]
                                         .isVegan),
@@ -141,7 +141,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
                                   "Vegan",
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: CustomColor.isDisableColor(widget
+                                    color: AppColors.isDisableColor(widget
                                         .streamListRecipes
                                         .value[index]
                                         .isVegan),

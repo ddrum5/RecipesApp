@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/views/widgets/list_recipes_widget.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoritesScreen extends StatefulWidget {
-
   final FavoritesViewModel favoritesViewModel;
+
   FavoritesScreen(this.favoritesViewModel);
 
   @override
@@ -25,12 +26,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favorite Recipes"),
+        title: Text(AppLocalizations.of(context)?.favoriteTitle ?? ''),
         actions: [
           PopupMenuButton<int>(
             icon: Icon(Icons.more_vert),
             itemBuilder: (context) => [
-              PopupMenuItem<int>(value: 0, child: Text("Delete all recipes")),
+              PopupMenuItem<int>(
+                  value: 0,
+                  child: Text(
+                      AppLocalizations.of(context)?.removeAllRecipes ?? '')),
             ],
             onSelected: (index) {
               showAlertDialog(context, () {
@@ -46,9 +50,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               if (widget.favoritesViewModel.streamData.value.isNotEmpty) {
-                return ListRecipesWidget(widget.favoritesViewModel.streamData, widget.favoritesViewModel);
+                return ListRecipesWidget(widget.favoritesViewModel.streamData,
+                    widget.favoritesViewModel);
               } else {
-                return DataEmptyWidget('No favorite recipes');
+                return DataEmptyWidget(
+                    AppLocalizations.of(context)?.no_favorites ?? '');
               }
             } else {
               return Center(child: CircularProgressIndicator());
@@ -63,13 +69,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 showAlertDialog(BuildContext context, Function f) {
   // set up the buttons
   Widget cancelButton = TextButton(
-    child: Text("Cancel"),
+    child: Text(AppLocalizations.of(context)?.cancel ?? ''),
     onPressed: () {
       Navigator.pop(context);
     },
   );
-  Widget continueButton = TextButton(
-    child: Text("Continue"),
+  Widget yesButton = TextButton(
+    child: Text(AppLocalizations.of(context)?.yes ?? ''),
     onPressed: () {
       f();
       Navigator.pop(context);
@@ -77,10 +83,9 @@ showAlertDialog(BuildContext context, Function f) {
   );
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Recipes app"),
-    content: Text("Do you want delete all recipes ?"),
+    content: Text(AppLocalizations.of(context)?.confirmRemoveAllRecipe ?? ''),
     actions: [
-      continueButton,
+      yesButton,
       cancelButton,
     ],
   );

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
-import 'package:project_pilot/helper/custom_color.dart';
+import 'package:project_pilot/Helper/configs/app_color.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/views/widgets/filter_recipes_type.dart';
 import 'package:project_pilot/views/widgets/filter_ricpies.dart';
 import 'package:project_pilot/views/widgets/list_recipes_widget.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RecipesScreen extends StatefulWidget {
   final RecipesViewModel recipesViewModel;
@@ -32,16 +33,16 @@ class _RecipesScreen extends State<RecipesScreen> {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: CustomColor.purplishBlue,
+              backgroundColor: AppColors.purplishBlue,
               title: !widget.recipesViewModel.isSearching.value
-                  ? Text('Recipes')
+                  ? Text(AppLocalizations.of(context)?.recipe ?? '')
                   : TextField(
                       onSubmitted: (text) {
                         widget.recipesViewModel.getSearchRecipes(text: text);
                         widget.recipesViewModel.changeSearchState();
                       },
                       decoration: InputDecoration(
-                        hintText: "Input text here",
+                        hintText: AppLocalizations.of(context)?.search ?? '',
                         filled: true,
                         fillColor: Colors.white,
                         focusedBorder: UnderlineInputBorder(
@@ -77,7 +78,7 @@ class _RecipesScreen extends State<RecipesScreen> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
-              backgroundColor: CustomColor.brightViolet,
+              backgroundColor: AppColors.brightViolet,
               child:
                   Image.asset('assets/images/icon_floating_action_button.png'),
               onPressed: () {
@@ -99,7 +100,7 @@ class _RecipesScreen extends State<RecipesScreen> {
                           widget.recipesViewModel.streamData,
                           widget.favoritesViewModel);
                     } else {
-                      return DataEmptyWidget('No recipe data');
+                      return DataEmptyWidget(AppLocalizations.of(context)?.no_recipes??'');
                     }
                   } else {
                     return Center(

@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 import 'base_viewmodel.dart';
 
 class DetailsViewModel {
-  final response = RecipeSecives.getInstance();
+  final response = RecipeServices.getInstance();
   final recipeDao = BaseViewModel.favoriteRecipeDao;
   var streamOverView = BehaviorSubject<OverviewModel>();
   var streamIngredients = BehaviorSubject<List<IngredientModel>>();

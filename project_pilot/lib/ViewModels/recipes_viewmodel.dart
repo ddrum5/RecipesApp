@@ -11,7 +11,7 @@ class RecipesViewModel {
     isSearching.sink.add(false);
   }
 
-  var response = RecipeSecives.getInstance();
+  var response = RecipeServices.getInstance();
 
   void getRandomRecipes() async {
     randomRecipesData = await response.getRandomRecipes();

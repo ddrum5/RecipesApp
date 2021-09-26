@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_pilot/helper/custom_color.dart';
+import 'package:project_pilot/Helper/configs/app_color.dart';
 
-class CustomTheme with ChangeNotifier {
+class AppTheme with ChangeNotifier {
   bool _isDart = false;
 
   ThemeMode get isDart => _isDart ? ThemeMode.light : ThemeMode.dark;
@@ -11,7 +11,7 @@ class CustomTheme with ChangeNotifier {
     scaffoldBackgroundColor: Colors.white,
     fontFamily: "robotoMedium",
     appBarTheme: AppBarTheme(
-      backgroundColor: CustomColor.purplishBlue,
+      backgroundColor: AppColors.purplishBlue,
     ),
     backgroundColor: Colors.white,
   );

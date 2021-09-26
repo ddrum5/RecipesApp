@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
-import 'package:project_pilot/helper/custom_color.dart';
+import 'package:project_pilot/Helper/configs/app_color.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/views/detail/ingredients_screen.dart';
 import 'package:project_pilot/views/detail/instructions_screen.dart';
 import 'package:project_pilot/views/detail/overview_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailScreen extends StatefulWidget {
   final RecipeModel recipeModel;
@@ -37,7 +38,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Scaffold(
                   appBar: AppBar(
                     title: Text(
-                      "Details",
+                      AppLocalizations.of(context)?.details ?? '',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     actions: [
@@ -53,7 +54,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   .insertRecipesToFavorite(widget.recipeModel),
                             )
                     ],
-                    bottom: tabBar,
+                    bottom: tabBar(context),
                   ),
                   body: TabBarView(
                     children: [
@@ -68,39 +69,40 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 }
 
-var tabBar = TabBar(
-  tabs: [
-    Container(
-      padding: EdgeInsets.only(bottom: 14),
-      child: Text(
-        "Overview",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
+TabBar tabBar(BuildContext context) => TabBar(
+      tabs: [
+        Container(
+          padding: EdgeInsets.only(bottom: 14),
+          child: Text(
+            AppLocalizations.of(context)?.overview ?? '',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
         ),
-      ),
-    ),
-    Container(
-        padding: EdgeInsets.only(bottom: 14),
-        child: Text(
-          "Ingredients",
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        )),
-    Container(
-        padding: EdgeInsets.only(bottom: 14),
-        child: Text(
-          "Instructions",
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        )),
-  ],
-);
+        Container(
+            padding: EdgeInsets.only(bottom: 14),
+            child: Text(
+              AppLocalizations.of(context)?.ingredient ?? '',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            )),
+        Container(
+            padding: EdgeInsets.only(bottom: 14),
+            child: Text(
+              AppLocalizations.of(context)?.instructions ?? '',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            )),
+      ],
+    );
 
 buildIconAdd(BuildContext context, Function f) {
   return IconButton(
     onPressed: () {
       f();
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      final snackBar = buildSnackBar('Recipe has been add to favorite list!');
+      final snackBar =
+          buildSnackBar(context, AppLocalizations.of(context)?.msgSaveRecipe ?? '');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     icon: Icon(
@@ -115,7 +117,8 @@ buildIconRemove(BuildContext context, Function f) {
     onPressed: () {
       f();
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      final snackBar = buildSnackBar('Recipe has been removed from favorites!');
+      final snackBar =
+          buildSnackBar(context, AppLocalizations.of(context)?.msgRemoveRecipes ?? '');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     icon: Icon(
@@ -125,13 +128,13 @@ buildIconRemove(BuildContext context, Function f) {
   );
 }
 
-SnackBar buildSnackBar(String text) {
+SnackBar buildSnackBar(BuildContext context,String text) {
   return SnackBar(
     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
     content: Text(text),
     action: SnackBarAction(
-      textColor: CustomColor.brightVioletLight,
-      label: 'OK',
+      textColor: AppColors.brightVioletLight,
+      label: AppLocalizations.of(context)?.ok??'',
       onPressed: () {},
     ),
   );

@@ -1,0 +1,32 @@
+{
+  "recipe": "Recipes",
+  "favorite": "Favorite",
+  "favoriteTitle": "Favorite Recipes",
+  "joke": "Joke",
+  "jokeTitle": "Food Joke",
+
+  "details": "Details",
+  "overview": "Overview",
+  "ingredient": "Ingredients",
+  "instructions": "Instruction",
+  "description": "Description",
+  "step": "Step",
+
+  "apply": "APPLY",
+  "filter": "Filter",
+  "meal": "Meal Type",
+  "diet": "Diet Type",
+
+  "removeAllRecipes": "Remove all recipes",
+  "msgSaveRecipe": "Recipe saved.",
+  "msgRemoveRecipes": "Recipe removed.",
+  "search": "Search",
+  "yes": "YES",
+  "cancel": "CANCEL",
+  "confirmRemoveAllRecipe": "Are you sure you want to remove all favorite recipes",
+  "ok": "OKAY",
+
+  "no_favorites": "No Favorite Recipes",
+  "no_recipes": "Don't have any recipes",
+  "error": "An error has occurred"
+}

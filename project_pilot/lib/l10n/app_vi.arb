@@ -1,0 +1,32 @@
+{
+  "recipe": "Công thức",
+  "favorite": "Yêu thích",
+  "favoriteTitle": "Công thức yêu thích",
+  "joke": "Câu đùa",
+
+
+  "details": "Chi tiết",
+  "overview": "Tổng quan",
+  "ingredient": "Nguyên liệu",
+  "instructions": "Hướng dẫn",
+  "description": "Mô tả",
+  "step": "Bước",
+
+  "apply": "ĐỒNG Ý",
+  "filter": "Lọc",
+  "meal": "Loại bữa ăn",
+  "diet": "Kiểu ăn kiêng",
+
+  "removeAllRecipes": "Xóa tất cả công thức",
+  "msgSaveRecipe": "Đã lưu công thức vào mục yêu thích.",
+  "msgRemoveRecipes": "Đã xóa công thức khỏi mục yêu thích.",
+  "search": "Tìm kiếm",
+  "yes": "Đồng ý",
+  "cancel": "Hủy bỏ",
+  "confirmRemoveAllRecipe": "Bạn có chắc chắn xóa tất cả công thức",
+  "ok": "xong",
+
+  "no_favorites": "Không có công thức yêu thích nào",
+  "no_recipes": "Không có bất kỳ công thức nấu ăn nào",
+  "error": "Có lỗi nào đó đã xảy ra"
+}

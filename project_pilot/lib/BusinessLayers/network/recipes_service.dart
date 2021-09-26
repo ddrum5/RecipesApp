@@ -8,22 +8,24 @@ import 'package:project_pilot/models/overview_model.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/BusinessLayers/network/networking.dart';
 import 'package:project_pilot/BusinessLayers/network/request_type.dart';
+import 'package:project_pilot/Helper/extentions/map_extension.dart';
 
-class RecipeSecives {
-  static RecipeSecives? _responseData;
+class RecipeServices {
+  static RecipeServices? _responseData;
 
-  static RecipeSecives getInstance() {
+  static RecipeServices getInstance() {
     if (_responseData == null) {
-      _responseData = RecipeSecives();
+      _responseData = RecipeServices();
     }
     return _responseData!;
   }
 
-  final String baseUrl = "https://api.spoonacular.com/recipes";
-  final int randomRecipeNumber = 10;
   // 21c22adaa4a1410287cdea8b8d49f86f
   // be6f7e4d1bfd487e93995dc0b910ce30
   final String apiKey = "be6f7e4d1bfd487e93995dc0b910ce30";
+  final String baseUrl = "https://api.spoonacular.com/recipes";
+  final int randomRecipeNumber = 10;
+
 
   Networking client = Networking(Client());
 
@@ -36,7 +38,7 @@ class RecipeSecives {
       final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        var results = jsonData['recipes'] as List<dynamic>;
+        var results = jsonData.getList('recipes');
         listRecipes = results.map((e) => RecipeModel.fromJson(e)).toList();
       }
       return listRecipes;
@@ -55,7 +57,7 @@ class RecipeSecives {
       final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        var results = jsonData['results'] as List<dynamic>;
+        var results = jsonData.getList('results');
         listRecipes = results.map((e) => RecipeModel.fromJson(e)).toList();
       }
       return listRecipes;
@@ -76,7 +78,7 @@ class RecipeSecives {
       final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        var results = jsonData['results'] as List<dynamic>;
+        var results = jsonData.getList('results');
         listRecipes = results.map((e) => RecipeModel.fromJson(e)).toList();
       }
       return listRecipes;
@@ -95,12 +97,11 @@ class RecipeSecives {
       final response = await client.request(path: url, type: RequestType.GET);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        final ingredientsJsonData =
-            jsonData['extendedIngredients'] as List<dynamic>;
-        final analyzedInstructions =
-            jsonData['analyzedInstructions'] as List<dynamic>;
-        final instructionsJsonData =
-            analyzedInstructions[0]['steps'] as List<dynamic>;
+        final ingredientsJsonData = jsonData.getList('extendedIngredients');
+        final analyzedInstructions = jsonData.getList('analyzedInstructions');
+        final analyzedInstructionsMap =
+            analyzedInstructions.first as Map<String, dynamic>;
+        final instructionsJsonData = analyzedInstructionsMap.getList('steps');
 
         detailsModel.overviewModel = OverviewModel.fromJson(jsonData);
         detailsModel.ingredientModels = ingredientsJsonData
