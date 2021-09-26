@@ -18,8 +18,8 @@ class _FilterRecipesState extends State<FilterRecipes> {
         padding: const EdgeInsets.all(4.0),
         child: FilterChip(
           label: Text(element),
-          selected: widget.viewModel.recipeFilters.contains(element),
-          labelStyle: widget.viewModel.recipeFilters.contains(element)
+          selected: widget.viewModel.recipeFilter.contains(element),
+          labelStyle: widget.viewModel.recipeFilter.contains(element)
               ? TextStyle(color: CustomColor.blueLight)
               : TextStyle(color: CustomColor.grayDark),
           checkmarkColor: CustomColor.blueLight,
@@ -66,6 +66,7 @@ class _FilterRecipesState extends State<FilterRecipes> {
                   ),
               child: Text('APPLY'),
               onPressed: () {
+                widget.viewModel.getFilterRecipes();
                 Navigator.pop(context);
               },
             )

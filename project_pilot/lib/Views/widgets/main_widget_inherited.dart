@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
-import 'package:project_pilot/ViewModels/main_viewmodel.dart';
 
 class MainWidgetInherited extends InheritedWidget {
   final FavoritesViewModel favoritesViewModel;

@@ -3,10 +3,9 @@ import 'package:project_pilot/BusinessLayers/network/recipes_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecipesViewModel {
-
+  var randomRecipesData = <RecipeModel>[];
   var streamData = BehaviorSubject<List<RecipeModel>>();
   var isSearching = BehaviorSubject<bool>();
-
 
   RecipesViewModel() {
     isSearching.sink.add(false);
@@ -14,28 +13,39 @@ class RecipesViewModel {
 
   var response = RecipeSecives.getInstance();
 
-
-
-
   void getRandomRecipes() async {
-    var data = <RecipeModel>[];
-    data = await response.getRandomRecipes();
-    streamData.sink.add(data);
+    randomRecipesData = await response.getRandomRecipes();
+    streamData.sink.add(randomRecipesData);
   }
 
-  getSearchRecipes({required String text}) async {
-    var data = <RecipeModel>[];
-    data = await response.getSearchRecipes(text);
-    streamData.sink.add(data);
+  void getSearchRecipes({required String text}) async {
+    randomRecipesData = await response.getSearchRecipes(text);
+    getFilterRecipes();
   }
 
-  getFilterRecipes({required String dietType, required String mealType}) async {
-    var data = <RecipeModel>[];
-    data = await response.getFilterRecipes(dietType, mealType);
-    streamData.sink.add(data);
+  void getFilterRecipesByTypes() async {
+    randomRecipesData = await response.getFilterRecipes(dietFilter, mealFilter);
+    getFilterRecipes();
   }
 
-  changeSearchState() {
+  void getFilterRecipes() {
+    var listRecipesFilter = <RecipeModel>[];
+    listRecipesFilter.addAll(randomRecipesData);
+    switch (recipeFilter) {
+      case 'Most Like':
+        listRecipesFilter.sort((a, b) {
+          return -a.likesNumber.compareTo(b.likesNumber);
+        });
+        break;
+      default:
+        listRecipesFilter.clear();
+        listRecipesFilter.addAll(randomRecipesData);
+        break;
+    }
+    streamData.sink.add(listRecipesFilter);
+  }
+
+  void changeSearchState() {
     isSearching.value
         ? isSearching.sink.add(false)
         : isSearching.sink.add(true);
@@ -71,9 +81,9 @@ class RecipesViewModel {
 
   String mealFilter = '';
   String dietFilter = '';
-  final recipeFilters = <String>[];
+  String recipeFilter = '';
 
-  mealFilterState(String element, bool value) {
+  void mealFilterState(String element, bool value) {
     value ? mealFilter = element : mealFilter = '';
   }
 
@@ -82,13 +92,15 @@ class RecipesViewModel {
   }
 
   void recipeFilterState(String element, bool value) {
-    if (value) {
-      recipeFilters.add(element);
-    } else {
-      recipeFilters.removeWhere((item) {
-        return item == element;
-      });
-    }
+    value ? recipeFilter = element : recipeFilter = '';
+
+    // if (value) {
+    //   recipeFilters.add(element);
+    // } else {
+    //   recipeFilters.removeWhere((item) {
+    //     return item == element;
+    //   });
+    // }
   }
 
   void dispose() {

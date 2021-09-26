@@ -91,9 +91,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
                 child: Text('APPLY'),
                 onPressed: () {
                   setState(() {
-                    widget.viewModel.getFilterRecipes(
-                        dietType: widget.viewModel.dietFilter,
-                        mealType: widget.viewModel.mealFilter);
+                    widget.viewModel.getFilterRecipesByTypes();
                   });
                   Navigator.pop(context);
                 },
