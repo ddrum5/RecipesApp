@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
+import 'package:project_pilot/Views/widgets/main_widget_inherited.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/ViewModels/main_viewmodel.dart';
-import 'package:project_pilot/views/home/favorites_screen.dart';
-import 'package:project_pilot/views/home/joke_screen.dart';
-import 'package:project_pilot/views/home/recipes_screen.dart';
+import 'package:project_pilot/Views/home/favorites_screen.dart';
+import 'package:project_pilot/Views/home/joke_screen.dart';
+import 'package:project_pilot/Views/home/recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-
   final MainViewModel mainViewModel;
 
   HomeScreen(this.mainViewModel);
@@ -19,21 +19,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
 
-  
-  final List<Widget> _screenList = <Widget>[
-    RecipesScreen(),
-    FavoritesScreen(FavoritesViewModel()),
-    JokeScreen()
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final homeScreenList = <Widget>[
+      RecipesScreen(),
+      FavoritesScreen(MainWidgetInherited.of(context)!.favoritesViewModel),
+      JokeScreen()
+    ];
+
     return Scaffold(
         body: StreamBuilder<int>(
           stream: widget.mainViewModel.currentScreenIndex,
           builder: (context, snapshot) {
             return Center(
-              child: _screenList
+              child: homeScreenList
                   .elementAt(widget.mainViewModel.currentScreenIndex.value),
             );
           },

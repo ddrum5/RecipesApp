@@ -11,5 +11,5 @@ part 'database.g.dart';
 
 @Database(version: 1, entities: [RecipeModel])
 abstract class FlutterDatabase extends FloorDatabase {
-  FavoriteRecipeDao get recipeDao;
+  FavoriteRecipeDao get favoriteRecipeDao;
 }

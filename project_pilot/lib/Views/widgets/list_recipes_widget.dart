@@ -3,15 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
+import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/models/recipe_model.dart';
-import 'package:project_pilot/Views/detail/detail_screen.dart';
+import 'package:project_pilot/Views/detail_screen.dart';
 import 'package:rxdart/rxdart.dart';
+
 
 class ListRecipesWidget extends StatefulWidget {
   final BehaviorSubject<List<RecipeModel>> streamListRecipes;
-
-  ListRecipesWidget(this.streamListRecipes);
+  final FavoritesViewModel favoritesViewModel;
+  ListRecipesWidget(this.streamListRecipes, this.favoritesViewModel);
 
   @override
   _ListRecipesWidgetState createState() => _ListRecipesWidgetState();
@@ -30,7 +32,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
               MaterialPageRoute(
                 builder: (_) => DetailScreen(
                   widget.streamListRecipes.value[index],
-                  DetailsViewModel(),
+                  DetailsViewModel(widget.favoritesViewModel),
                 ),
               ),
             );

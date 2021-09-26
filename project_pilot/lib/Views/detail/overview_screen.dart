@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/helper/custom_color.dart';
-import 'package:project_pilot/views/widgets/message_widget.dart';
+import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 
 class OverviewScreen extends StatefulWidget {
   final DetailsViewModel _detailsViewModel;
@@ -31,7 +31,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
             );
           } else {
             if (!snapshot.hasData) {
-              return MessageWidget('No data');
+              return DataEmptyWidget('No data');
             } else {
               return SingleChildScrollView(
                 child: Column(

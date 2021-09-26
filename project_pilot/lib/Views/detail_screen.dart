@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
+import 'package:project_pilot/Views/widgets/main_widget_inherited.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/views/detail/ingredients_screen.dart';
@@ -22,7 +23,6 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     super.initState();
     widget.detailsViewModel.getDetailRecipeData(widget.recipeModel.id);
-
   }
 
   @override
@@ -101,12 +101,11 @@ buildIconAdd(BuildContext context, Function f) {
     onPressed: () {
       f();
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
-
       final snackBar = buildSnackBar('Recipe has been add to favorite list!');
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     icon: Icon(
-      Icons.star_border,
+      Icons.star,
       color: Colors.white,
     ),
   );
@@ -122,7 +121,7 @@ buildIconRemove(BuildContext context, Function f) {
     },
     icon: Icon(
       Icons.star,
-      color: Colors.white,
+      color: Colors.yellow,
     ),
   );
 }

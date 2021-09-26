@@ -21,11 +21,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: 0.13.3
   flutter_native_splash: ^1.2.3
-  floor: ^1.2.0
-  floor_generator: ^1.2.0
-  build_runner: ^2.1.2
 
-
+  floor: ^1.1.0
   cached_network_image: ^3.1.0
   share: ^2.0.4
 
@@ -37,11 +34,12 @@ flutter_native_splash:
   android_gravity: fill
 
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  floor_generator: ^1.1.0
+  build_runner: ^2.0.0
 
 flutter:
   uses-material-design: true

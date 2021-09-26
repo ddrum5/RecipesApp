@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/helper/custom_color.dart';
 
-class MessageWidget extends StatelessWidget {
+class DataEmptyWidget extends StatelessWidget {
   final String text;
-  const MessageWidget(this.text);
+  const DataEmptyWidget(this.text);
 
   @override
   Widget build(BuildContext context) {

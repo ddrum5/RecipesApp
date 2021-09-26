@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/views/widgets/list_recipes_widget.dart';
-import 'package:project_pilot/views/widgets/message_widget.dart';
+import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 
 class FavoritesScreen extends StatefulWidget {
-  final FavoritesViewModel favoritesViewModel;
 
+  final FavoritesViewModel favoritesViewModel;
   FavoritesScreen(this.favoritesViewModel);
 
   @override
@@ -46,9 +46,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               if (widget.favoritesViewModel.streamData.value.isNotEmpty) {
-                return ListRecipesWidget(widget.favoritesViewModel.streamData);
+                return ListRecipesWidget(widget.favoritesViewModel.streamData, widget.favoritesViewModel);
               } else {
-                return MessageWidget('No favorite recipes');
+                return DataEmptyWidget('No favorite recipes');
               }
             } else {
               return Center(child: CircularProgressIndicator());

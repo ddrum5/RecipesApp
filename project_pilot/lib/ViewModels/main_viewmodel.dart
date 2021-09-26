@@ -1,9 +1,9 @@
-
+import 'package:project_pilot/BusinessLayers/LocalDatabases/favorite_recipe_dao.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MainViewModel {
-
   BehaviorSubject<int> currentScreenIndex = BehaviorSubject<int>();
+  static late FavoriteRecipeDao favoriteRecipeDao;
 
   MainViewModel() {
     currentScreenIndex.sink.add(0);
@@ -16,6 +16,5 @@ class MainViewModel {
   void dispose() {
     currentScreenIndex.close();
   }
-
 
 }

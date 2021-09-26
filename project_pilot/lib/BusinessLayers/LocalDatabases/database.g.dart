@@ -91,7 +91,7 @@ class _$FlutterDatabase extends FlutterDatabase {
   }
 
   @override
-  FavoriteRecipeDao get recipeDao {
+  FavoriteRecipeDao get favoriteRecipeDao {
     return _recipeDaoInstance ??= _$FavoriteRecipeDao(database, changeListener);
   }
 }
