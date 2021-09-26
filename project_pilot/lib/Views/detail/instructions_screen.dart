@@ -70,11 +70,14 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                           ],
                         ),
                         Padding(padding: EdgeInsets.only(bottom: 16)),
-                        Text(
-                            widget._detailsViewModel.streamInstructions
-                                .value[index].step,
-                            style: TextStyle(
-                                fontSize: 16, color: AppColors.grayDark))
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                              widget._detailsViewModel.streamInstructions
+                                  .value[index].step,
+                              style: TextStyle(
+                                  fontSize: 16, color: AppColors.grayDark)),
+                        )
                       ],
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:project_pilot/Helper/configs/app_color.dart';
 import 'package:project_pilot/models/ingredient_model.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class IngredientsScreen extends StatefulWidget {
   final DetailsViewModel _detailsViewModel;
 
@@ -28,7 +29,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
             );
           } else {
             if (!snapshot.hasData) {
-              return DataEmptyWidget(AppLocalizations.of(context)?.error??'');
+              return DataEmptyWidget(AppLocalizations.of(context)?.error ?? '');
             } else {
               return ListView.builder(
                 itemCount:
@@ -49,14 +50,18 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                         Expanded(
                           flex: 3,
                           child: Container(
+                            width: 113,
+                            height: 111,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(15),
                                   topLeft: Radius.circular(15)),
                               image: DecorationImage(
-                                image: NetworkImage(widget._detailsViewModel
-                                    .streamIngredients.value[index].imageUrl),
-                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                  widget._detailsViewModel.streamIngredients
+                                      .value[index].imageUrl,
+                                ),
+                                fit: BoxFit.none,
                               ),
                             ),
                           ),
@@ -86,8 +91,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                                       .value[index].original,
                                   maxLines: 1,
                                   style: TextStyle(
-                                      fontSize: 14,
-                                      color: AppColors.grayDark),
+                                      fontSize: 14, color: AppColors.grayDark),
                                 ),
                               ],
                             ),
