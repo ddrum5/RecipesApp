@@ -94,13 +94,13 @@ class RecipesViewModel {
   void recipeFilterState(String element, bool value) {
     value ? recipeFilter = element : recipeFilter = '';
 
-    // if (value) {
-    //   recipeFilters.add(element);
-    // } else {
-    //   recipeFilters.removeWhere((item) {
-    //     return item == element;
-    //   });
-    // }
+    /*if (value) {
+      recipeFilters.add(element);
+    } else {
+      recipeFilters.removeWhere((item) {
+        return item == element;
+      });
+    }*/
   }
 
   void dispose() {

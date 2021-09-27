@@ -39,7 +39,10 @@ class _DetailScreenState extends State<DetailScreen> {
                   appBar: AppBar(
                     title: Text(
                       AppLocalizations.of(context)?.details ?? '',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                     actions: [
                       widget.detailsViewModel.streamIsRecipeExist.value
@@ -72,21 +75,31 @@ class _DetailScreenState extends State<DetailScreen> {
 TabBar tabBar(BuildContext context) => TabBar(
       tabs: [
         Container(
-          padding: EdgeInsets.only(bottom: 14),
-          child: Text(AppLocalizations.of(context)?.overview ?? '',
-              style: TextStyle(color: Colors.white, fontSize: 16)),
-        ),
+            padding: EdgeInsets.only(bottom: 14),
+            child: Text(
+              AppLocalizations.of(context)?.overview ?? '',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            )),
         Container(
             padding: EdgeInsets.only(bottom: 14),
             child: Text(
               AppLocalizations.of(context)?.ingredient ?? '',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
             )),
         Container(
             padding: EdgeInsets.only(bottom: 14),
             child: Text(
               AppLocalizations.of(context)?.instructions ?? '',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
             )),
       ],
       indicatorColor: Colors.white,

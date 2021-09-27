@@ -235,7 +235,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         widget._detailsViewModel.streamOverView.value.summary
                             .removeHtml(),
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                            color: Colors.black.withOpacity(0.6), fontSize: 14, fontWeight: FontWeight.bold),
+                            color: Colors.black.withOpacity(0.35), fontSize: 14.5, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Padding(padding: EdgeInsets.all(10))

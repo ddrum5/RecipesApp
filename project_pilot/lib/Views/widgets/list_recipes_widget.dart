@@ -20,7 +20,7 @@ class ListRecipesWidget extends StatefulWidget {
   _ListRecipesWidgetState createState() => _ListRecipesWidgetState();
 }
 
-class _ListRecipesWidgetState extends State<ListRecipesWidget> with AutomaticKeepAliveClientMixin {
+class _ListRecipesWidgetState extends State<ListRecipesWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -37,6 +37,9 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> with AutomaticKee
                 ),
               ),
             );
+          },
+          onLongPress: () {
+
           },
           child: Container(
             margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -159,7 +162,4 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> with AutomaticKee
     );
   }
 
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }
