@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
@@ -19,7 +20,7 @@ class ListRecipesWidget extends StatefulWidget {
   _ListRecipesWidgetState createState() => _ListRecipesWidgetState();
 }
 
-class _ListRecipesWidgetState extends State<ListRecipesWidget> {
+class _ListRecipesWidgetState extends State<ListRecipesWidget> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -157,4 +158,8 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
       },
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

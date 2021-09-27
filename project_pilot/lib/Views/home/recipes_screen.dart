@@ -28,52 +28,74 @@ class _RecipesScreen extends State<RecipesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final myAction = Row(
+      children: [
+        GestureDetector(
+          child: const Icon(Icons.search),
+          onTap: () {
+            widget.recipesViewModel.changeSearchState();
+          },
+        ),
+        const SizedBox(
+          width: 16,
+        ),
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return FilterRecipes(widget.recipesViewModel);
+                });
+          },
+          child: const Icon(Icons.filter_list_outlined),
+        ),
+        const SizedBox(
+          width: 16,
+        ),
+      ],
+    );
+    final searchField = Container(
+      width: double.maxFinite,
+      color: Colors.white,
+      child: TextField(
+        onSubmitted: (text) {
+          widget.recipesViewModel.getSearchRecipes(text);
+          widget.recipesViewModel.changeSearchState();
+        },
+        decoration: InputDecoration(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          prefixIcon: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              widget.recipesViewModel.changeSearchState();
+            },
+            color: const Color(0x61000000),
+          ),
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.keyboard_voice),
+            onPressed: () {},
+            color: const Color(0x61000000),
+          ),
+          hintText: AppLocalizations.of(context)?.search ?? '',
+
+        ),
+      ),
+    );
+
     return StreamBuilder<bool>(
         stream: widget.recipesViewModel.isSearching,
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
-              title: !widget.recipesViewModel.isSearching.value
-                  ? Text(AppLocalizations.of(context)?.recipe ?? '')
-                  : TextField(
-                      onSubmitted: (text) {
-                        widget.recipesViewModel.getSearchRecipes(text: text);
-                        widget.recipesViewModel.changeSearchState();
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)?.search ?? '',
-                        filled: true,
-                        fillColor: Colors.white,
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                        ),
-                        hintStyle: TextStyle(color: Colors.black54),
-                      ),
-                    ),
+              title: widget.recipesViewModel.isSearching.value
+                  ? searchField
+                  : Text(AppLocalizations.of(context)?.recipe ?? ''),
               actions: <Widget>[
                 widget.recipesViewModel.isSearching.value
-                    ? IconButton(
-                        icon: Icon(Icons.cancel),
-                        onPressed: () {
-                          widget.recipesViewModel.changeSearchState();
-                        },
-                      )
-                    : IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {
-                          widget.recipesViewModel.changeSearchState();
-                        },
-                      ),
-                IconButton(
-                  icon: Icon(Icons.filter_list),
-                  onPressed: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return FilterRecipes(widget.recipesViewModel);
-                        });
-                  },
-                ),
+                    ? Container()
+                    : myAction,
               ],
             ),
             floatingActionButton: FloatingActionButton(
@@ -99,7 +121,8 @@ class _RecipesScreen extends State<RecipesScreen> {
                           widget.recipesViewModel.streamData,
                           widget.favoritesViewModel);
                     } else {
-                      return DataEmptyWidget(AppLocalizations.of(context)?.no_recipes??'');
+                      return DataEmptyWidget(
+                          AppLocalizations.of(context)?.no_recipes ?? '');
                     }
                   } else {
                     return Center(

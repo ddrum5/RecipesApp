@@ -29,11 +29,13 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
           );
         } else {
           if (!snapshot.hasData) {
-            return DataEmptyWidget(AppLocalizations.of(context)?.error ?? '');
+            return DataEmptyWidget(AppLocalizations
+                .of(context)
+                ?.error ?? '');
           } else {
             return ListView.builder(
               itemCount:
-                  widget._detailsViewModel.streamInstructions.value.length,
+              widget._detailsViewModel.streamInstructions.value.length,
               itemBuilder: (context, index) {
                 return Card(
                   shape: RoundedRectangleBorder(
@@ -44,43 +46,54 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                     padding: EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check_circle,
-                              color: CustomColors.green,
-                              size: 20,
-                            ),
-                            Padding(padding: EdgeInsets.only(right: 16)),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${AppLocalizations.of(context)?.step} ${index + 1}',
-                                  style: TextStyle(
-                                      fontSize: 12, color: CustomColors.grayDark),
-                                ),
-                                Text(
-                                  "Lorem Ipsum",
-                                  style: TextStyle(
-                                      fontSize: 25, color: CustomColors.green),
-                                ),
-                              ],
-                            ),
-                          ],
+                    Row(
+                    children: [
+                    Icon(
+                    Icons.check_circle,
+                      color: CustomColors.green,
+                      size: 20,
+                    ),
+                    Padding(padding: EdgeInsets.only(right: 16)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${AppLocalizations
+                              .of(context)
+                              ?.step} ${index + 1}',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .bodyText1
+                              ?.copyWith(
+                              fontSize: 12)
                         ),
-                        Padding(padding: EdgeInsets.only(bottom: 16)),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                              widget._detailsViewModel.streamInstructions
-                                  .value[index].step,
-                              style: TextStyle(
-                                  fontSize: 16, color: CustomColors.grayDark)),
-                        )
+                        Text(
+                          "Lorem Ipsum",
+                          style: TextStyle(
+                              fontSize: 25, color: CustomColors.green),
+                        ),
                       ],
                     ),
+                    ],
                   ),
+                  Padding(padding: EdgeInsets.only(bottom: 16)),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                          widget._detailsViewModel.streamInstructions
+                              .value[index].step,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .bodyText1
+                              ?.copyWith(
+                              fontSize: 1))
+                )],
+                )
+                ,
+                )
+                ,
                 );
               },
             );

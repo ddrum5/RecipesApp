@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:share/share.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class JokeScreen extends StatelessWidget {
@@ -21,33 +22,36 @@ class JokeScreen extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(15), topLeft: Radius.circular(15)),
+          border: Border.all(
+            color: CustomColors.grayLite,
+            width: 2,
+
+          ),
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
             child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
                 height: 217,
-                child: Card(
-                  elevation: 5,
-                  child: Stack(
-                    alignment: Alignment(0.8, 0.9),
-                    children: [
-                      Container(
-                        padding:
-                            EdgeInsets.only(left: 16, right: 16, bottom: 50),
-                        child: Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                          "sed do eiusmod tempor incididunt ut labore et dolore magna ",
-                          style: TextStyle(fontSize: 25),
-                        ),
+                child: Stack(
+                  alignment: Alignment(0.8, 0.9),
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.only(left: 16, right: 16, bottom: 50),
+                      child: Text(
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+                        "sed do eiusmod tempor incididunt ut labore et dolore magna ",
+                        style: Theme.of(context)
+                          .textTheme
+                          .headline6?.copyWith(fontSize: 23)
                       ),
-                      Text(
-                        "01/01/2021",
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      "01/01/2021",
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                  ],
                 ))),
       ),
     );

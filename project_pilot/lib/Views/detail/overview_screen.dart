@@ -226,7 +226,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText1
-                            ?.copyWith(fontSize: 13),
+                            ?.copyWith(fontSize: 13.5, color: Colors.black.withOpacity(0.5)),
                       ),
                     ),
                     Container(
@@ -234,7 +234,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                       child: Text(
                         widget._detailsViewModel.streamOverView.value.summary
                             .removeHtml(),
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: Colors.black.withOpacity(0.6), fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Padding(padding: EdgeInsets.all(10))

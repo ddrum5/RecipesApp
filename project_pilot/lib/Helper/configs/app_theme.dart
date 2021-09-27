@@ -55,7 +55,7 @@ class AppTheme {
         fontFamily: 'robotoMedium',
       ),
       bodyText1: TextStyle(
-        color: Color(0xFF9D9D9D),
+        color: Color(0xFFdfdfdf),
         fontSize: 14,
       ),
     ),

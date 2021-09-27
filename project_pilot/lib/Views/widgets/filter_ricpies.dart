@@ -20,9 +20,15 @@ class _FilterRecipesState extends State<FilterRecipes> {
           label: Text(element),
           selected: widget.viewModel.recipeFilter.contains(element),
           labelStyle: widget.viewModel.recipeFilter.contains(element)
-              ? TextStyle(color: CustomColors.blueLight)
-              : TextStyle(color: CustomColors.grayDark),
-          checkmarkColor: CustomColors.blueLight,
+              ? Theme.of(context)
+              .textTheme
+              .bodyText1
+              ?.copyWith(color: CustomColors.purplishBlue)
+              : Theme.of(context)
+              .textTheme
+              .bodyText1
+              ?.copyWith(color: CustomColors.graySpDark),
+          checkmarkColor: CustomColors.purplishBlue,
           selectedColor: CustomColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
@@ -49,7 +55,10 @@ class _FilterRecipesState extends State<FilterRecipes> {
                 Padding(padding: EdgeInsets.all(3)),
                 Text(
                   AppLocalizations.of(context)?.filter??'',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(fontSize: 20),
                 ),
               ],
             ),

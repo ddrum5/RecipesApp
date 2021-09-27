@@ -18,7 +18,7 @@ class RecipesViewModel {
     streamData.sink.add(randomRecipesData);
   }
 
-  void getSearchRecipes({required String text}) async {
+  void getSearchRecipes( String text) async {
     randomRecipesData = await response.getSearchRecipes(text);
     getFilterRecipes();
   }

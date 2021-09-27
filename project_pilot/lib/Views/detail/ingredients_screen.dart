@@ -83,15 +83,14 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                                   widget._detailsViewModel.streamIngredients
                                       .value[index].name,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 25),
+                                  style: Theme.of(context).textTheme.headline6?.copyWith(fontSize: 25),
                                 ),
                                 Padding(padding: EdgeInsets.only(bottom: 16)),
                                 Text(
                                   widget._detailsViewModel.streamIngredients
                                       .value[index].original,
                                   maxLines: 1,
-                                  style: TextStyle(
-                                      fontSize: 14, color: CustomColors.grayDark),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
                               ],
                             ),
