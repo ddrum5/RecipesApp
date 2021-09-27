@@ -22,9 +22,9 @@ class RecipeServices {
 
   // 21c22adaa4a1410287cdea8b8d49f86f
   // be6f7e4d1bfd487e93995dc0b910ce30
-  final String apiKey = "21c22adaa4a1410287cdea8b8d49f86f";
+  final String apiKey = "be6f7e4d1bfd487e93995dc0b910ce30";
   final String baseUrl = "https://api.spoonacular.com/recipes";
-  final int randomRecipeNumber = 10;
+  final int randomRecipeNumber = 15;
 
 
   Networking client = Networking(Client());

@@ -24,84 +24,92 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: widget.favoritesViewModel.streamListFilter,
-      builder: (context, snapshot) {
-        if(!snapshot.hasData) {
-          return Container();
-        } else {
-          return Scaffold(
-            appBar: widget.favoritesViewModel.streamListFilter.value.length == 0
-                ? AppBar(
-              title: Text(AppLocalizations.of(context)?.favoriteTitle ?? ''),
-              actions: [
-                PopupMenuButton<int>(
-                  icon: Icon(Icons.more_vert),
-                  itemBuilder: (context) => [
-                    PopupMenuItem<int>(
-                        value: 0,
+        stream: widget.favoritesViewModel.streamListFilter,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Container();
+          } else {
+            return Scaffold(
+              appBar: widget.favoritesViewModel.streamListFilter.value.length ==
+                      0
+                  ? AppBar(
+                      title: Text(
+                        AppLocalizations.of(context)?.favoriteTitle ?? '',
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                              color: Colors.white, fontSize: 20
+                            ),
+                      ),
+                      actions: [
+                        PopupMenuButton<int>(
+                          icon: Icon(Icons.more_vert),
+                          itemBuilder: (context) => [
+                            PopupMenuItem<int>(
+                                value: 0,
+                                child: Text(AppLocalizations.of(context)
+                                        ?.removeAllRecipes ??
+                                    '')),
+                          ],
+                          onSelected: (index) {
+                            showAlertDialog(context, () {
+                              widget.favoritesViewModel
+                                  .deleteAllFavoriteRecipes();
+                            });
+                          },
+                        ),
+                      ],
+                    )
+                  : AppBar(
+                      backgroundColor: Colors.black,
+                      title: Align(
                         child: Text(
-                            AppLocalizations.of(context)?.removeAllRecipes ??
-                                '')),
-                  ],
-                  onSelected: (index) {
-                    showAlertDialog(context, () {
-                      widget.favoritesViewModel.deleteAllFavoriteRecipes();
-                    });
-                  },
-                ),
-              ],
-            )
-                : AppBar(
-              backgroundColor: Colors.black,
-              title: Align(
-                child: Text(
-                  '${widget.favoritesViewModel.streamListFilter.value.length} '
-                      '${AppLocalizations.of(context)?.recipeSelected}',
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                alignment: Alignment.centerLeft,
-              ),
-              leading: IconButton(
-                icon: const Icon(Icons.clear, color: Colors.white),
-                onPressed: () {
-                  widget.favoritesViewModel.unselectAll();
-                },
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.white),
-                  onPressed: () {
-                    widget.favoritesViewModel.deleteSelectedItem();
-                  },
-                ),
-              ],
-            ),
-            body: Center(
-              child: StreamBuilder(
-                stream: widget.favoritesViewModel.streamData,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.active) {
-                    if (widget.favoritesViewModel.streamData.value.isNotEmpty) {
-                      return ListFavoriteRecipes(widget.favoritesViewModel.streamData,
-                          widget.favoritesViewModel);
+                          '${widget.favoritesViewModel.streamListFilter.value.length} '
+                          '${AppLocalizations.of(context)?.recipeSelected}',
+                          style:
+                              Theme.of(context).textTheme.headline6?.copyWith(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        alignment: Alignment.centerLeft,
+                      ),
+                      leading: IconButton(
+                        icon: const Icon(Icons.clear, color: Colors.white),
+                        onPressed: () {
+                          widget.favoritesViewModel.unselectAll();
+                        },
+                      ),
+                      actions: [
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.white),
+                          onPressed: () {
+                            widget.favoritesViewModel.deleteSelectedItem();
+                          },
+                        ),
+                      ],
+                    ),
+              body: Center(
+                child: StreamBuilder(
+                  stream: widget.favoritesViewModel.streamData,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      if (widget
+                          .favoritesViewModel.streamData.value.isNotEmpty) {
+                        return ListFavoriteRecipes(
+                            widget.favoritesViewModel.streamData,
+                            widget.favoritesViewModel);
+                      } else {
+                        return DataEmptyWidget(
+                            AppLocalizations.of(context)?.no_favorites ?? '');
+                      }
                     } else {
-                      return DataEmptyWidget(
-                          AppLocalizations.of(context)?.no_favorites ?? '');
+                      return Center(child: CircularProgressIndicator());
                     }
-                  } else {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                },
+                  },
+                ),
               ),
-            ),
-          );
-        }
-
-      }
-    );
+            );
+          }
+        });
   }
 }
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomColors {
   static Color purplishBlue = Color(0xFF651fff);
-  static Color blueSuperLight = Color(0xFFf5f1ff);
+  static Color blueSuperLight = Color(0xFFede5ff);
 
   static Color brightVioletLight = Color(0xFFa255ff);
 

@@ -4,7 +4,7 @@ import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/Views/widgets/list_recipes_widget.dart';
-import 'package:project_pilot/views/widgets/filter_recipes_type.dart';
+import 'package:project_pilot/Views/widgets/filter_recipes_type.dart';
 import 'package:project_pilot/views/widgets/filter_ricpies.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -58,6 +58,7 @@ class _RecipesScreen extends State<RecipesScreen> {
       width: double.maxFinite,
       color: Colors.white,
       child: TextField(
+
         onSubmitted: (text) {
           widget.recipesViewModel.getSearchRecipes(text);
           widget.recipesViewModel.changeSearchState();
@@ -79,7 +80,6 @@ class _RecipesScreen extends State<RecipesScreen> {
             color: const Color(0x61000000),
           ),
           hintText: AppLocalizations.of(context)?.search ?? '',
-
         ),
       ),
     );
@@ -91,7 +91,13 @@ class _RecipesScreen extends State<RecipesScreen> {
             appBar: AppBar(
               title: widget.recipesViewModel.isSearching.value
                   ? searchField
-                  : Text(AppLocalizations.of(context)?.recipe ?? ''),
+                  : Text(
+                      AppLocalizations.of(context)?.recipe ?? '',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          ?.copyWith(color: Colors.white, fontSize: 20),
+                    ),
               actions: <Widget>[
                 widget.recipesViewModel.isSearching.value
                     ? Container()

@@ -87,7 +87,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
                 style: Theme.of(context)
                     .textTheme
                     .headline6
-                    ?.copyWith(fontSize: 20),
+                    ?.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Wrap(
                 children: itemMeals(context).toList(),
@@ -98,7 +98,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
                 style: Theme.of(context)
                     .textTheme
                     .headline6
-                    ?.copyWith(fontSize: 20),
+                    ?.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Wrap(
                 children: itemDiets(context).toList(),
