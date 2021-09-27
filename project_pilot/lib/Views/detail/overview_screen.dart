@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
-import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:project_pilot/Helper/extentions/string_extension.dart';
 
 class OverviewScreen extends StatefulWidget {
   final DetailsViewModel _detailsViewModel;
@@ -88,9 +88,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     Container(
                       padding: EdgeInsets.only(top: 24, left: 16),
                       child: Text(
-                        widget._detailsViewModel.streamOverView.value.title,
-                        style: TextStyle(fontSize: 25),
-                      ),
+                          widget._detailsViewModel.streamOverView.value.title,
+                          style: Theme.of(context).textTheme.headline6),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 16, left: 16, right: 67),
@@ -104,7 +103,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: AppColors.isDisableColor(widget
+                                    color: CustomColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -112,7 +111,9 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                     size: 20,
                                   ),
                                   Padding(padding: EdgeInsets.only(right: 10)),
-                                  Text("Vegan", style: TextStyle(fontSize: 14))
+                                  Text("Vegan",
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1)
                                 ],
                               ),
                               Padding(padding: EdgeInsets.only(bottom: 12)),
@@ -120,7 +121,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: AppColors.isDisableColor(widget
+                                    color: CustomColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -129,7 +130,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   ),
                                   Padding(padding: EdgeInsets.only(right: 10)),
                                   Text("Vegetarian",
-                                      style: TextStyle(fontSize: 14))
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1)
                                 ],
                               ),
                             ],
@@ -141,7 +143,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: AppColors.isDisableColor(widget
+                                    color: CustomColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -150,7 +152,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   ),
                                   Padding(padding: EdgeInsets.only(right: 10)),
                                   Text("Dairy Free",
-                                      style: TextStyle(fontSize: 14))
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1)
                                 ],
                               ),
                               Padding(padding: EdgeInsets.only(bottom: 12)),
@@ -159,7 +162,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   Icon(
                                     Icons.check_circle,
                                     size: 20,
-                                    color: AppColors.isDisableColor(widget
+                                    color: CustomColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -167,7 +170,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   ),
                                   Padding(padding: EdgeInsets.only(right: 10)),
                                   Text("Gluten Free",
-                                      style: TextStyle(fontSize: 14))
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1)
                                 ],
                               ),
                             ],
@@ -180,7 +184,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   Icon(
                                     Icons.check_circle,
                                     size: 20,
-                                    color: AppColors.isDisableColor(widget
+                                    color: CustomColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -188,7 +192,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                   ),
                                   Padding(padding: EdgeInsets.only(right: 10)),
                                   Text("Healthy",
-                                      style: TextStyle(fontSize: 14))
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1)
                                 ],
                               ),
                               Padding(padding: EdgeInsets.only(bottom: 12)),
@@ -196,7 +201,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                 children: [
                                   Icon(
                                     Icons.check_circle,
-                                    color: AppColors.isDisableColor(widget
+                                    color: CustomColors.isDisableColor(widget
                                         ._detailsViewModel
                                         .streamOverView
                                         .value
@@ -204,7 +209,9 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                     size: 20,
                                   ),
                                   Padding(padding: EdgeInsets.only(right: 10)),
-                                  Text("Cheap", style: TextStyle(fontSize: 14))
+                                  Text("Cheap",
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1)
                                 ],
                               ),
                             ],
@@ -216,21 +223,18 @@ class _OverviewScreenState extends State<OverviewScreen> {
                       padding: EdgeInsets.only(top: 24, left: 16, right: 16),
                       child: Text(
                         AppLocalizations.of(context)?.description ?? '',
-                        style: TextStyle(fontSize: 13, color: AppColors.gray),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            ?.copyWith(fontSize: 13),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-                      child: Html(
-                        data: widget
-                            ._detailsViewModel.streamOverView.value.summary,
-                        style: {
-                          "*": Style(
-                              color: AppColors.grayDark,
-                              fontSize: FontSize(16),
-                              fontFamily: "robotoRegular",
-                              margin: EdgeInsets.all(0))
-                        },
+                      child: Text(
+                        widget._detailsViewModel.streamOverView.value.summary
+                            .removeHtml(),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
                     Padding(padding: EdgeInsets.all(10))

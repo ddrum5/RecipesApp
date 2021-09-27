@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
-import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/ViewModels/main_viewmodel.dart';
 import 'package:project_pilot/Views/home/favorites_screen.dart';
 import 'package:project_pilot/Views/home/joke_screen.dart';
@@ -42,20 +42,24 @@ class _HomeScreenState extends State<HomeScreen> {
             return BottomNavigationBar(
               currentIndex: widget.mainViewModel.currentScreenIndex.value,
               onTap: widget.mainViewModel.onItemTapped,
-              selectedItemColor: AppColors.purplishBlue,
+              selectedItemColor: CustomColors.purplishBlue,
+              selectedLabelStyle: Theme.of(context).textTheme
+                  .bodyText1,
+              unselectedLabelStyle: Theme.of(context).textTheme
+                  .bodyText1,
               items: [
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.menu_book, size: 25),
+                    icon: Icon(Icons.menu_book, size: 24),
                     label: AppLocalizations.of(context)?.recipe),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.star, size: 25),
+                    icon: Icon(Icons.star, size: 24),
                     label: AppLocalizations.of(context)?.favorite),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.insert_emoticon, size: 25),
+                    icon: Icon(Icons.insert_emoticon, size: 24),
                     label: AppLocalizations.of(context)?.joke)
               ],
             );
-          },
+          }
         ));
   }
 }

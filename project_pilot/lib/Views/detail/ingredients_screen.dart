@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/Views/widgets/data_empty_widget.dart';
-import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/models/ingredient_model.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +39,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                     margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: AppColors.grayLite,
+                        color: CustomColors.grayLite,
                         width: 1,
                       ),
                       borderRadius: BorderRadius.circular(15),
@@ -69,7 +69,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                         Container(
                           height: 111,
                           width: 1,
-                          color: AppColors.grayLite,
+                          color: CustomColors.grayLite,
                         ),
                         Expanded(
                           flex: 7,
@@ -91,7 +91,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                                       .value[index].original,
                                   maxLines: 1,
                                   style: TextStyle(
-                                      fontSize: 14, color: AppColors.grayDark),
+                                      fontSize: 14, color: CustomColors.grayDark),
                                 ),
                               ],
                             ),

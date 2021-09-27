@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-
+import 'package:project_pilot/Helper/extentions/map_extension.dart';
 @Entity(tableName: 'FavoriteRecipes')
 class RecipeModel {
   @primaryKey
@@ -15,12 +15,12 @@ class RecipeModel {
       this.imageUrl, this.description, this.likesNumber);
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.isVegan = json['vegan'];
-    this.title = json['title'];
-    this.readyInMinutes = json['readyInMinutes'];
-    this.imageUrl = json['image'];
-    this.description = json['summary'];
-    this.likesNumber = json['aggregateLikes'];
+    this.id = json.getInt('id');
+    this.isVegan = json.getBool('vegan');
+    this.title = json.getString('title');
+    this.readyInMinutes = json.getInt('readyInMinutes');
+    this.imageUrl = json.getString('image');
+    this.description = json.getString('summary');
+    this.likesNumber = json.getInt('aggregateLikes');
   }
 }

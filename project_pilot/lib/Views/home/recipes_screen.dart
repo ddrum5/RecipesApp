@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
-import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/views/widgets/filter_recipes_type.dart';
 import 'package:project_pilot/views/widgets/filter_ricpies.dart';
@@ -33,7 +33,6 @@ class _RecipesScreen extends State<RecipesScreen> {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.purplishBlue,
               title: !widget.recipesViewModel.isSearching.value
                   ? Text(AppLocalizations.of(context)?.recipe ?? '')
                   : TextField(
@@ -78,7 +77,7 @@ class _RecipesScreen extends State<RecipesScreen> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
-              backgroundColor: AppColors.brightViolet,
+              backgroundColor: CustomColors.brightViolet,
               child:
                   Image.asset('assets/images/icon_floating_action_button.png'),
               onPressed: () {
@@ -90,7 +89,7 @@ class _RecipesScreen extends State<RecipesScreen> {
                 );
               },
             ),
-            body: Center(
+            body: Container(
               child: StreamBuilder(
                 stream: widget.recipesViewModel.streamData,
                 builder: (context, snapshot) {

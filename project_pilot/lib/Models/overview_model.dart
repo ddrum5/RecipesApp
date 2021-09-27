@@ -1,3 +1,5 @@
+
+import 'package:project_pilot/Helper/extentions/map_extension.dart';
 class OverviewModel {
   String image = '';
   int aggregateLikes = 0;
@@ -12,16 +14,16 @@ class OverviewModel {
   String summary = '';
 
   OverviewModel.fromJson(Map<String, dynamic> json) {
-    this.image=json['image'];
-    this.readyInMinutes=json['readyInMinutes'];
-    this.title=json['title'];
-    this.aggregateLikes=json['aggregateLikes'];
-    this.cheap=json['cheap'];
-    this.dairyFree=json['dairyFree'];
-    this.glutenFree=json['glutenFree'];
-    this.summary=json['summary'];
-    this.vegan=json['vegan'];
-    this.vegetarian=json['vegetarian'];
-    this.veryHealthy=json['veryHealthy'];
+    this.image=json.getString('image');
+    this.readyInMinutes=json.getInt('readyInMinutes');
+    this.title=json.getString('title');
+    this.aggregateLikes=json.getInt('aggregateLikes');
+    this.cheap=json.getBool('cheap');
+    this.dairyFree=json.getBool('dairyFree');
+    this.glutenFree=json.getBool('glutenFree');
+    this.summary=json.getString('summary');
+    this.vegan=json.getBool('vegan');
+    this.vegetarian=json.getBool('vegetarian');
+    this.veryHealthy=json.getBool('veryHealthy');
   }
 }

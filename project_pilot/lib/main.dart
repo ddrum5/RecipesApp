@@ -37,6 +37,8 @@ class _MyAppState extends State<MyApp> {
         Locale('en', ''),
         Locale('vi', ''),
       ],
+      themeMode: ThemeMode.system,
+      darkTheme: AppTheme.darkMode,
       theme: AppTheme.lightMode,
       home: HomeScreen(MainViewModel(), FavoritesViewModel()),
     );

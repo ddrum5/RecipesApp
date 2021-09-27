@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/Views/widgets/data_empty_widget.dart';
-import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/models/instruction_model.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -38,7 +38,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                 return Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                      side: BorderSide(width: 1, color: AppColors.grayLite)),
+                      side: BorderSide(width: 1, color: CustomColors.grayLite)),
                   margin: EdgeInsets.only(top: 16, right: 16, left: 16),
                   child: Container(
                     padding: EdgeInsets.all(16),
@@ -48,7 +48,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                           children: [
                             Icon(
                               Icons.check_circle,
-                              color: AppColors.green,
+                              color: CustomColors.green,
                               size: 20,
                             ),
                             Padding(padding: EdgeInsets.only(right: 16)),
@@ -58,12 +58,12 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                                 Text(
                                   '${AppLocalizations.of(context)?.step} ${index + 1}',
                                   style: TextStyle(
-                                      fontSize: 12, color: AppColors.grayDark),
+                                      fontSize: 12, color: CustomColors.grayDark),
                                 ),
                                 Text(
                                   "Lorem Ipsum",
                                   style: TextStyle(
-                                      fontSize: 25, color: AppColors.green),
+                                      fontSize: 25, color: CustomColors.green),
                                 ),
                               ],
                             ),
@@ -76,7 +76,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                               widget._detailsViewModel.streamInstructions
                                   .value[index].step,
                               style: TextStyle(
-                                  fontSize: 16, color: AppColors.grayDark)),
+                                  fontSize: 16, color: CustomColors.grayDark)),
                         )
                       ],
                     ),

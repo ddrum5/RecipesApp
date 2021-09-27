@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
-import 'package:project_pilot/Helper/configs/app_color.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class FilterRecipes extends StatefulWidget {
   final RecipesViewModel viewModel;
@@ -20,10 +20,10 @@ class _FilterRecipesState extends State<FilterRecipes> {
           label: Text(element),
           selected: widget.viewModel.recipeFilter.contains(element),
           labelStyle: widget.viewModel.recipeFilter.contains(element)
-              ? TextStyle(color: AppColors.blueLight)
-              : TextStyle(color: AppColors.grayDark),
-          checkmarkColor: AppColors.blueLight,
-          selectedColor: AppColors.blueSuperLight,
+              ? TextStyle(color: CustomColors.blueLight)
+              : TextStyle(color: CustomColors.grayDark),
+          checkmarkColor: CustomColors.blueLight,
+          selectedColor: CustomColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
               widget.viewModel.recipeFilterState(element, value);
@@ -60,7 +60,7 @@ class _FilterRecipesState extends State<FilterRecipes> {
             Padding(padding: EdgeInsets.all(10)),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: AppColors.purplishBlue,
+                primary: CustomColors.purplishBlue,
                   minimumSize: Size(double.infinity,
                       60) // double.infinity is the width and 30 is the height
                   ),
