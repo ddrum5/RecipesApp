@@ -41,13 +41,12 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
             widget.favoritesViewModel.unselectAll();
           },
           onLongPress: () {
-            setState(() {
               widget.favoritesViewModel.changeListFilter(
                 widget.streamListRecipes.value[index],
-                widget.favoritesViewModel.listFavoritesFilter
+                widget.favoritesViewModel.streamListFilter.value
                     .contains(widget.streamListRecipes.value[index]),
               );
-            });
+
 
           },
           child: StreamBuilder(

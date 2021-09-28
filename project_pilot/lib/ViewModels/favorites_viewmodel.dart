@@ -6,7 +6,6 @@ import 'base_viewmodel.dart';
 class FavoritesViewModel {
   var streamData = BehaviorSubject<List<RecipeModel>>();
   var streamListFilter = BehaviorSubject<List<RecipeModel>>();
-  final listFavoritesFilter = <RecipeModel>[];
 
   void getListRecipesFromLocal() async {
     var listRecipes = await BaseViewModel.favoriteRecipeDao.getAllRecipes();
@@ -21,6 +20,7 @@ class FavoritesViewModel {
 
 
   void changeListFilter(RecipeModel element, bool value) {
+    final listFavoritesFilter = streamListFilter.value;
     if (!value) {
       listFavoritesFilter.add(element);
     } else {
@@ -31,12 +31,11 @@ class FavoritesViewModel {
     streamListFilter.sink.add(listFavoritesFilter);
   }
   void unselectAll() {
-    listFavoritesFilter.clear();
-    streamListFilter.sink.add(listFavoritesFilter);
+    streamListFilter.sink.add([]);
   }
 
   void deleteSelectedItem() async{
-    await BaseViewModel.favoriteRecipeDao.deleteRecipes(listFavoritesFilter);
+    await BaseViewModel.favoriteRecipeDao.deleteRecipes(streamListFilter.value);
     getListRecipesFromLocal();
   }
 
