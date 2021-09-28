@@ -64,8 +64,9 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                           style: Theme
                               .of(context)
                               .textTheme
-                              .bodyText1
+                              .headline6
                               ?.copyWith(
+                            color: CustomColors.gray,
                               fontSize: 12)
                         ),
                         Text(
@@ -86,9 +87,7 @@ class _InstructionsScreenState extends State<InstructionsScreen> {
                           style: Theme
                               .of(context)
                               .textTheme
-                              .bodyText1
-                              ?.copyWith(
-                              fontSize: 1))
+                              .bodyText1?.copyWith(fontSize: 14.5))
                 )],
                 )
                 ,

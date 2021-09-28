@@ -1,6 +1,6 @@
 {
   "recipe": "Recipes",
-  "favorite": "Favorite",
+  "favorite": "Favorites",
   "favoriteTitle": "Favorite Recipes",
   "joke": "Joke",
   "jokeTitle": "Food Joke",
@@ -29,5 +29,32 @@
 
   "no_favorites": "No Favorite Recipes",
   "no_recipes": "Don't have any recipes",
-  "error": "An error has occurred"
+  "error": "An error has occurred",
+
+  "main_course": "Main Course",
+  "snack" : "Snack",
+  "dessert" : "Dessert",
+  "appetizer" : "Appetizer",
+  "drink" : "Drink",
+  "salad" : "Salad",
+  "finger_food" : "Finger food",
+
+  "vegan" : "Vegan",
+  "vegetarian" : "Vegetarian",
+  "ketogenic" : "Ketogenic",
+  "dairy_free" : "Dairy free",
+  "gluten_free" : "Gluten free",
+  "paleo" : "Paleo",
+  "healthy" : "Healthy",
+  "cheap" : "Cheap",
+  "lacto_vegetarian" : "Lacto vegetarian",
+
+  "all" : "All",
+  "newest" : "Newest",
+  "top_rate" : "Top Rate",
+  "most_popular" : "Most Popular",
+  "trendy" : "Trendy",
+  "most_like" : "Most like"
+
+
 }

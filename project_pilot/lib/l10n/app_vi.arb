@@ -29,5 +29,33 @@
 
   "no_favorites": "Không có công thức yêu thích nào",
   "no_recipes": "Không có bất kỳ công thức nấu ăn nào",
-  "error": "Có lỗi nào đó đã xảy ra"
+  "error": "Có lỗi nào đó đã xảy ra",
+
+  "main_course": "Bữa chính",
+  "snack" : "Đồ ăn nhẹ",
+  "dessert" : "Món tráng miệng",
+  "appetizer" : "Khai vị",
+  "salad" : "Salad",
+  "drink" : "Đồ uống",
+  "finger_food" : "Ăn bằng tay",
+
+
+  "vegan" : "Ăn chay thuần",
+  "vegetarian" : "Ăn chay",
+  "ketogenic" : "Ketogenic",
+  "dairy_free" : "Không sữa",
+  "gluten_free" : "Không gluten",
+  "paleo" : "Thời cổ xưa",
+  "healthy" : "Khỏe mạnh",
+  "cheap" : "Rẻ",
+  "lacto_vegetarian" : "Ăn chay kiểu Lacto",
+
+
+
+  "all" : "Tất cả",
+  "newest" : "Mới nhất",
+  "top_rate" : "Nhiều đánh giá",
+  "most_popular" : "Phổ biến nhất",
+  "trendy" : "Đang hot",
+  "most_like" : "Nhiều lượt thích nhất"
 }

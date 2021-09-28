@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/recipes_viewmodel.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:project_pilot/Helper/extentions/map_extension.dart';
 
 class FilterRecipesType extends StatefulWidget {
   final RecipesViewModel viewModel;
@@ -13,15 +14,28 @@ class FilterRecipesType extends StatefulWidget {
 }
 
 class _FilterRecipesTypeState extends State<FilterRecipesType> {
+
+
   Iterable<Widget> itemMeals(BuildContext context) sync* {
-    for (var element in widget.viewModel.mealTypes) {
+    final mealTypes = {
+      "Main Course" : AppLocalizations.of(context)?.main_course ?? '',
+      "Snack" : AppLocalizations.of(context)?.snack?? '',
+      "Dessert": AppLocalizations.of(context)?.dessert ?? '',
+      "Appetizer": AppLocalizations.of(context)?.appetizer ?? '',
+      "Drink": AppLocalizations.of(context)?.drink ?? '',
+      "Salad": AppLocalizations.of(context)?.salad ?? '',
+      "Finger Food" : AppLocalizations.of(context)?.finger_food ?? ''
+    };
+
+    for (var key in mealTypes.keys) {
+      var value = mealTypes.getString(key);
       yield Padding(
         padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
         child: FilterChip(
-          label: Text(element),
+          label: Text(value),
           backgroundColor: Colors.black.withOpacity(0.05),
-          selected: identical(widget.viewModel.mealFilter, element),
-          labelStyle: identical(widget.viewModel.mealFilter, element)
+          selected: identical(widget.viewModel.mealFilter, key),
+          labelStyle: identical(widget.viewModel.mealFilter, key)
               ? Theme.of(context)
                   .textTheme
                   .bodyText1
@@ -34,7 +48,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
           selectedColor: CustomColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
-              widget.viewModel.mealFilterState(element, value);
+              widget.viewModel.mealFilterState(key, value);
             });
           },
         ),
@@ -43,14 +57,26 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
   }
 
   Iterable<Widget> itemDiets(BuildContext context) sync* {
-    for (var element in widget.viewModel.dietTypes) {
+
+    final dietTypes = {
+      "Vegan" : AppLocalizations.of(context)?.vegan ?? '',
+      "Vegetarian" : AppLocalizations.of(context)?.vegetarian ?? '',
+      "Ketogenic": AppLocalizations.of(context)?.ketogenic ?? '',
+      "Dairy Free": AppLocalizations.of(context)?.dairy_free ?? '',
+      "Gluten Free": AppLocalizations.of(context)?.gluten_free ?? '',
+      "Paleo": AppLocalizations.of(context)?.paleo ?? '',
+      "Lacto-Vegetarian": AppLocalizations.of(context)?.lacto_vegetarian ?? ''
+    };
+
+    for (var key in dietTypes.keys) {
+      var value = dietTypes.getString(key);
       yield Padding(
         padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
         child: FilterChip(
-          label: Text(element),
+          label: Text(value),
           backgroundColor: Colors.black.withOpacity(0.05),
-          selected: identical(widget.viewModel.dietFilter, element),
-          labelStyle: identical(widget.viewModel.dietFilter, element)
+          selected: identical(widget.viewModel.dietFilter, key),
+          labelStyle: identical(widget.viewModel.dietFilter, key)
               ? Theme.of(context)
                   .textTheme
                   .bodyText1
@@ -63,7 +89,7 @@ class _FilterRecipesTypeState extends State<FilterRecipesType> {
           selectedColor: CustomColors.blueSuperLight,
           onSelected: (bool value) {
             setState(() {
-              widget.viewModel.dietFilterState(element, value);
+              widget.viewModel.dietFilterState(key, value);
             });
           },
         ),

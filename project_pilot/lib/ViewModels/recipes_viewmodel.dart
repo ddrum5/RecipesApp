@@ -51,33 +51,9 @@ class RecipesViewModel {
         : isSearching.sink.add(true);
   }
 
-  final mealTypes = [
-    'Main Course',
-    'Snack',
-    'Dessert',
-    'Appetizer',
-    'Drink',
-    'Salad',
-    'Finger Food'
-  ];
-  final dietTypes = [
-    'Vegan',
-    'Vegetarian',
-    'Ketogenic',
-    'Dairy Free',
-    'Gluten Free',
-    'Paleo',
-    'Lacto-Vegetarian'
-  ];
 
-  final recipeTypes = [
-    'All',
-    'Newest',
-    'Top Rate',
-    'Most Popular',
-    'Trendy',
-    'Most Like'
-  ];
+
+
 
   String mealFilter = '';
   String dietFilter = '';
@@ -93,14 +69,6 @@ class RecipesViewModel {
 
   void recipeFilterState(String element, bool value) {
     value ? recipeFilter = element : recipeFilter = '';
-
-    /*if (value) {
-      recipeFilters.add(element);
-    } else {
-      recipeFilters.removeWhere((item) {
-        return item == element;
-      });
-    }*/
   }
 
   void dispose() {

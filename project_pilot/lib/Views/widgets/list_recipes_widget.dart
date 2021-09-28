@@ -38,9 +38,7 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
               ),
             );
           },
-          onLongPress: () {
-
-          },
+          onLongPress: () {},
           child: Container(
             margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
             decoration: BoxDecoration(
@@ -56,45 +54,42 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
               children: [
                 Expanded(
                   child: Container(
-                    width: 182,
-                    height: 218,
-                    child: CachedNetworkImage(
-                      imageUrl: widget.streamListRecipes.value[index].imageUrl,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
+                      width: 182,
+                      height: 218,
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(12),
                               bottomLeft: Radius.circular(12)),
-                        ),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              widget.streamListRecipes.value[index].imageUrl,
+                            ),
+                            fit: BoxFit.cover,
+                          ))
                       ),
-                    ),
-                  ),
                 ),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.fromLTRB(16, 16, 20, 16),
                     child: Column(
                       children: [
                         Align(
                           child: Text(
-                            widget.streamListRecipes.value[index].title,
-                            maxLines: 2,
-                            style: Theme.of(context).textTheme.headline6
-                          ),
+                              widget.streamListRecipes.value[index].title,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.headline6),
                           alignment: Alignment.centerLeft,
                         ),
                         Padding(padding: EdgeInsets.only(bottom: 16)),
                         Text(
                           widget.streamListRecipes.value[index].description
                               .removeHtml(),
-                          style: Theme.of(context).textTheme.headline6?.copyWith(
-                            fontSize: 14,
-                            color: CustomColors.gray
-                          ),
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                  fontSize: 14, color: CustomColors.gray),
                           maxLines: 3,
                         ),
                         Padding(padding: EdgeInsets.only(bottom: 10)),
@@ -161,5 +156,4 @@ class _ListRecipesWidgetState extends State<ListRecipesWidget> {
       },
     );
   }
-
 }

@@ -4,7 +4,6 @@ import 'package:project_pilot/Helper/configs/custom_colors.dart';
 
 class DataEmptyWidget extends StatelessWidget {
   final String text;
-
   const DataEmptyWidget(this.text);
 
   @override

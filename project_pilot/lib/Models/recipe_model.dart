@@ -1,5 +1,6 @@
 import 'package:floor/floor.dart';
 import 'package:project_pilot/Helper/extentions/map_extension.dart';
+
 @Entity(tableName: 'FavoriteRecipes')
 class RecipeModel {
   @primaryKey
@@ -19,7 +20,9 @@ class RecipeModel {
     this.isVegan = json.getBool('vegan');
     this.title = json.getString('title');
     this.readyInMinutes = json.getInt('readyInMinutes');
-    this.imageUrl = json.getString('image');
+    this.imageUrl = json.getString('image').isNotEmpty
+        ? json.getString('image')
+        : "https://1080motion.com/wp-content/uploads/2018/06/NoImageFound.jpg.png";
     this.description = json.getString('summary');
     this.likesNumber = json.getInt('aggregateLikes');
   }
