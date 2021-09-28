@@ -26,6 +26,7 @@
   "confirmRemoveAllRecipe": "Are you sure you want to remove all favorite recipes",
   "ok": "OKAY",
   "recipeSelected": "recipe selected",
+  "delete_all" : "Delete all?",
 
   "no_favorites": "No Favorite Recipes",
   "no_recipes": "Don't have any recipes",

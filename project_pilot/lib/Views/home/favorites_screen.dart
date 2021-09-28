@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/Views/widgets/list_favorite_recipes.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
@@ -31,62 +32,77 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           } else {
             return Scaffold(
               appBar: widget.favoritesViewModel.streamListFilter.value.length ==
-                      0
+                  0
                   ? AppBar(
-                      title: Text(
-                        AppLocalizations.of(context)?.favoriteTitle ?? '',
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
-                              color: Colors.white, fontSize: 20
-                            ),
-                      ),
-                      actions: [
-                        PopupMenuButton<int>(
-                          icon: Icon(Icons.more_vert),
-                          itemBuilder: (context) => [
-                            PopupMenuItem<int>(
-                                value: 0,
-                                child: Text(AppLocalizations.of(context)
-                                        ?.removeAllRecipes ??
-                                    '')),
-                          ],
-                          onSelected: (index) {
-                            showAlertDialog(context, () {
-                              widget.favoritesViewModel
-                                  .deleteAllFavoriteRecipes();
-                            });
-                          },
-                        ),
-                      ],
-                    )
+                title: Text(
+                  AppLocalizations
+                      .of(context)
+                      ?.favoriteTitle ?? '',
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(
+                      color: Colors.white, fontSize: 20
+                  ),
+                ),
+                actions: [
+                  PopupMenuButton<int>(
+                    icon: Icon(Icons.more_vert),
+                    itemBuilder: (context) =>
+                    [
+                      PopupMenuItem<int>(
+                          value: 0,
+                          child: Text(AppLocalizations
+                              .of(context)
+                              ?.removeAllRecipes ??
+                              '')),
+                    ],
+                    onSelected: (index) {
+                      showAlertDialog(context, () {
+                        widget.favoritesViewModel
+                            .deleteAllFavoriteRecipes();
+                      });
+                    },
+                  ),
+                ],
+              )
                   : AppBar(
-                      backgroundColor: Colors.black,
-                      title: Align(
-                        child: Text(
-                          '${widget.favoritesViewModel.streamListFilter.value.length} '
-                          '${AppLocalizations.of(context)?.recipeSelected}',
-                          style:
-                              Theme.of(context).textTheme.headline6?.copyWith(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      leading: IconButton(
-                        icon: const Icon(Icons.clear, color: Colors.white),
-                        onPressed: () {
-                          widget.favoritesViewModel.unselectAll();
-                        },
-                      ),
-                      actions: [
-                        IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.white),
-                          onPressed: () {
-                            widget.favoritesViewModel.deleteSelectedItem();
-                          },
-                        ),
-                      ],
+                backgroundColor: Colors.black,
+                title: Align(
+                  child: Text(
+                    '${widget.favoritesViewModel.streamListFilter.value
+                        .length} '
+                        '${AppLocalizations
+                        .of(context)
+                        ?.recipeSelected}',
+                    style:
+                    Theme
+                        .of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                ),
+                leading: IconButton(
+                  icon: const Icon(Icons.clear, color: Colors.white),
+                  onPressed: () {
+                    widget.favoritesViewModel.unselectAll();
+                  },
+                ),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.white),
+                    onPressed: () {
+                      widget.favoritesViewModel.deleteSelectedItem();
+                    },
+                  ),
+                ],
+              ),
               body: Center(
                 child: StreamBuilder(
                   stream: widget.favoritesViewModel.streamData,
@@ -99,7 +115,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                             widget.favoritesViewModel);
                       } else {
                         return DataEmptyWidget(
-                            AppLocalizations.of(context)?.no_favorites ?? '');
+                            AppLocalizations
+                                .of(context)
+                                ?.no_favorites ?? '');
                       }
                     } else {
                       return Center(child: CircularProgressIndicator());
@@ -116,13 +134,25 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 showAlertDialog(BuildContext context, Function f) {
   // set up the buttons
   Widget cancelButton = TextButton(
-    child: Text(AppLocalizations.of(context)?.cancel ?? ''),
+    child: Text(AppLocalizations
+        .of(context)
+        ?.cancel ?? '', style: Theme
+        .of(context)
+        .textTheme
+        .bodyText1
+        ?.copyWith(color: CustomColors.purplishBlue, fontWeight: FontWeight.bold)),
     onPressed: () {
       Navigator.pop(context);
     },
   );
   Widget yesButton = TextButton(
-    child: Text(AppLocalizations.of(context)?.yes ?? ''),
+    child: Text(AppLocalizations
+        .of(context)
+        ?.yes ?? '', style: Theme
+        .of(context)
+        .textTheme
+        .bodyText1
+        ?.copyWith(color: CustomColors.purplishBlue, fontWeight: FontWeight.bold)),
     onPressed: () {
       f();
       Navigator.pop(context);
@@ -130,10 +160,23 @@ showAlertDialog(BuildContext context, Function f) {
   );
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    content: Text(AppLocalizations.of(context)?.confirmRemoveAllRecipe ?? ''),
+    backgroundColor: Theme.of(context).backgroundColor,
+    title: Text(AppLocalizations
+        .of(context)
+        ?.delete_all ?? '',
+    style: Theme.of(context)
+        .textTheme
+        .headline6?.copyWith(fontSize: 22 )
+        ),
+    content: Text(AppLocalizations
+        .of(context)
+        ?.confirmRemoveAllRecipe ?? '', style: Theme
+        .of(context)
+        .textTheme
+        .bodyText1?.copyWith(fontSize: 16)),
     actions: [
-      yesButton,
       cancelButton,
+      yesButton,
     ],
   );
   // show the dialog

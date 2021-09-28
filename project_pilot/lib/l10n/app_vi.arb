@@ -26,6 +26,8 @@
   "confirmRemoveAllRecipe": "Bạn có chắc chắn xóa tất cả công thức",
   "ok": "xong",
   "recipeSelected": "công thức đã được chọn",
+  "delete_all" : "Xóa tất cả?",
+
 
   "no_favorites": "Không có công thức yêu thích nào",
   "no_recipes": "Không có bất kỳ công thức nấu ăn nào",
