@@ -5,7 +5,6 @@ import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:project_pilot/Helper/extentions/string_extension.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OverviewScreen extends StatefulWidget {
   final DetailsViewModel _detailsViewModel;
@@ -42,7 +41,6 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     children: [
                       Image.network(
                         widget._detailsViewModel.streamOverView.value.image,
-
                         width: double.maxFinite,
                         height: 240,
                         fit: BoxFit.cover,

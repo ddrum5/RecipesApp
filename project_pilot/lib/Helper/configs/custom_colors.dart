@@ -15,7 +15,7 @@ class CustomColors {
   static final Color grayDark = Color(0xff6d6d6d);
   static final Color graySpDark = Color(0xff585858);
   static final Color grayLite = Color(0xFFdfdfdf);
-  static final Color red = Color(0xfff44336);
+  static final Color red = Color(0xFFf44336);
   static final Color orange = Color(0xffff8f00);
 
   static Color isDisableColor(bool value) {
