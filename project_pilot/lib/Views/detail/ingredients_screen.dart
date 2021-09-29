@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_pilot/Views/widgets/data_empty_widget.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
-import 'package:project_pilot/models/ingredient_model.dart';
+import 'package:project_pilot/Models/ingredient_model.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

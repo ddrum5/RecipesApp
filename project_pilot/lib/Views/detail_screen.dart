@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/Views/widgets/snack_bar.dart';
-import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Models/recipe_model.dart';
 import 'package:project_pilot/views/detail/ingredients_screen.dart';
 import 'package:project_pilot/views/detail/instructions_screen.dart';
 import 'package:project_pilot/views/detail/overview_screen.dart';

@@ -1,4 +1,4 @@
-import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Models/recipe_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'base_viewmodel.dart';

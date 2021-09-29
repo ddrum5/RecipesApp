@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:floor/floor.dart';
 import 'package:project_pilot/BusinessLayers/LocalDatabases/favorite_recipe_dao.dart';
-import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Models/recipe_model.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 
 part 'database.g.dart';

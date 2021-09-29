@@ -1,6 +1,6 @@
 
 import 'package:floor/floor.dart';
-import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Models/recipe_model.dart';
 
 @dao
 abstract class FavoriteRecipeDao {

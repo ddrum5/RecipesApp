@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
-import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Models/recipe_model.dart';
 import 'package:project_pilot/Views/detail_screen.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:project_pilot/Helper/extentions/string_extension.dart';

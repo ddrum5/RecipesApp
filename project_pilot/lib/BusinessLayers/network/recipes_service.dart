@@ -1,11 +1,10 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
-import 'package:project_pilot/models/detail_model.dart';
-import 'package:project_pilot/models/ingredient_model.dart';
-import 'package:project_pilot/models/instruction_model.dart';
-import 'package:project_pilot/models/overview_model.dart';
-import 'package:project_pilot/models/recipe_model.dart';
+import 'package:project_pilot/Models/detail_model.dart';
+import 'package:project_pilot/Models/ingredient_model.dart';
+import 'package:project_pilot/Models/instruction_model.dart';
+import 'package:project_pilot/Models/overview_model.dart';
+import 'package:project_pilot/Models/recipe_model.dart';
 import 'package:project_pilot/BusinessLayers/network/networking.dart';
 import 'package:project_pilot/BusinessLayers/network/request_type.dart';
 import 'package:project_pilot/Helper/extentions/map_extension.dart';

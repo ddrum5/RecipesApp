@@ -1,4 +1,4 @@
-import 'package:project_pilot/models/recipe_model.dart';
+import '../Models/recipe_model.dart';
 import 'package:project_pilot/BusinessLayers/network/recipes_service.dart';
 import 'package:rxdart/rxdart.dart';
 
