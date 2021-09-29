@@ -23,6 +23,7 @@ import 'package:project_pilot/Helper/configs/custom_colors.dart';
 
 class AppTheme {
   static ThemeData lightMode = ThemeData(
+    primaryColorLight: Color(0xFF651fff),
     backgroundColor: Colors.white,
     brightness: Brightness.light,
     primaryColor: CustomColors.purplishBlue,

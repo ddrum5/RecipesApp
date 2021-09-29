@@ -1,3 +1,4 @@
+
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/models/ingredient_model.dart';
 import 'package:project_pilot/models/instruction_model.dart';
@@ -26,8 +27,8 @@ class DetailsViewModel {
     streamInstructions.sink.add(data.instructionModels);
 
     streamIsRecipeExist.listen((value) {
-      findRecipeFromDB(id);
       favoritesViewModel.getListRecipesFromLocal();
+      print(value);
     });
   }
 
@@ -38,10 +39,12 @@ class DetailsViewModel {
 
   void insertRecipesToFavorite(RecipeModel recipe) async {
     await recipeDao.insertRecipe(recipe);
+    findRecipeFromDB(recipe.id);
   }
 
   void deleteRecipeFromFavorite(RecipeModel recipe) async {
     await recipeDao.deleteRecipe(recipe);
+    findRecipeFromDB(recipe.id);
   }
 
   void dispose() {

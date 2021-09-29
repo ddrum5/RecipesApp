@@ -26,52 +26,48 @@ class _HomeScreenState extends State<HomeScreen> {
       FavoritesScreen(widget.favoritesViewModel),
       JokeScreen()
     ];
-    return Scaffold(
-        body: StreamBuilder<int>(
-          stream: widget.mainViewModel.currentScreenIndex,
-          builder: (context, snapshot) {
-            return Center(
-              child: homeScreenList
-                  .elementAt(widget.mainViewModel.currentScreenIndex.value),
-            );
-          },
-        ),
-        bottomNavigationBar: StreamBuilder<int>(
-          stream: widget.mainViewModel.currentScreenIndex,
-          builder: (context, snapshot) {
-            return Container(
-              decoration: BoxDecoration(
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                  ),
-                ],
+    return StreamBuilder(
+      stream: widget.mainViewModel.currentScreenIndex,
+      builder: (context, snapshot) {
+        if(!snapshot.hasData) {
+          return Container();
+        } else {
+          return Scaffold(
+              body: Center(
+                child: homeScreenList
+                    .elementAt(widget.mainViewModel.currentScreenIndex.value),
               ),
-              child: BottomNavigationBar(
+              bottomNavigationBar: Container(
+                decoration: BoxDecoration(
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 5,
+                    ),
+                  ],
+                ),
+                child: BottomNavigationBar(
+                  currentIndex: widget.mainViewModel.currentScreenIndex.value,
+                  onTap: widget.mainViewModel.onItemTapped,
+                  selectedItemColor: CustomColors.purplishBlue,
+                  selectedLabelStyle: Theme.of(context).textTheme.bodyText1,
+                  unselectedLabelStyle: Theme.of(context).textTheme.bodyText1,
+                  items: [
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.menu_book, size: 24),
+                        label: AppLocalizations.of(context)?.recipe),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.star, size: 24),
+                        label: AppLocalizations.of(context)?.favorite),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.insert_emoticon, size: 24),
+                        label: AppLocalizations.of(context)?.joke)
+                  ],
+                ),
+              ));
+        }
 
-                currentIndex: widget.mainViewModel.currentScreenIndex.value,
-                onTap: widget.mainViewModel.onItemTapped,
-                selectedItemColor: CustomColors.purplishBlue,
-                selectedLabelStyle: Theme.of(context).textTheme
-                    .bodyText1,
-                unselectedLabelStyle: Theme.of(context).textTheme
-                    .bodyText1,
-                items: [
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.menu_book, size: 24),
-                      label: AppLocalizations.of(context)?.recipe),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.star, size: 24),
-                      label: AppLocalizations.of(context)?.favorite),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.insert_emoticon, size: 24),
-                      label: AppLocalizations.of(context)?.joke)
-                ],
-
-              ),
-            );
-          }
-        ));
+      }
+    );
   }
 }

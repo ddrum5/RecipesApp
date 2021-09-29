@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/Views/widgets/list_favorite_recipes.dart';
+import 'package:project_pilot/Views/widgets/snack_bar.dart';
 import 'package:project_pilot/views/widgets/data_empty_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,6 +21,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   void initState() {
     super.initState();
     widget.favoritesViewModel.getListRecipesFromLocal();
+    widget.favoritesViewModel.unselectAll();
+    widget.favoritesViewModel.streamListFilter.listen((value) {
+      print("======================= ${value.length}");
+    });
   }
 
   @override
@@ -28,11 +33,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         stream: widget.favoritesViewModel.streamListFilter,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Container();
+            return Center(child: CircularProgressIndicator());
           } else {
             return Scaffold(
-              appBar: widget.favoritesViewModel.streamListFilter.value.length ==
-                      0
+              appBar: widget.favoritesViewModel.streamListFilter.value.isEmpty
                   ? AppBar(
                       title: Text(
                         AppLocalizations.of(context)?.favoriteTitle ?? '',
@@ -55,6 +59,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                             showAlertDialog(context, () {
                               widget.favoritesViewModel
                                   .deleteAllFavoriteRecipes();
+                              BuildSnackBar.showSnackBar(
+                                  context,
+                                  AppLocalizations.of(context)
+                                          ?.msgRemoveRecipes ??
+                                      '');
                             });
                           },
                         ),
@@ -85,6 +94,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                           icon: const Icon(Icons.delete, color: Colors.white),
                           onPressed: () {
                             widget.favoritesViewModel.deleteSelectedItem();
+                            BuildSnackBar.showSnackBar(
+                                context,
+                                AppLocalizations.of(context)
+                                        ?.msgRemoveRecipes ??
+                                    '');
                           },
                         ),
                       ],
@@ -96,9 +110,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     if (snapshot.connectionState == ConnectionState.active) {
                       if (widget
                           .favoritesViewModel.streamData.value.isNotEmpty) {
-                        return ListFavoriteRecipes(
-                            widget.favoritesViewModel.streamData,
-                            widget.favoritesViewModel);
+                        return ListFavoriteRecipes(widget.favoritesViewModel);
                       } else {
                         return DataEmptyWidget(
                             AppLocalizations.of(context)?.no_favorites ?? '');

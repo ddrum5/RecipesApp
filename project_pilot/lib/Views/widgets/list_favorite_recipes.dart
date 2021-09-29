@@ -5,16 +5,13 @@ import 'package:flutter/rendering.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
 import 'package:project_pilot/ViewModels/favorites_viewmodel.dart';
 import 'package:project_pilot/Helper/configs/custom_colors.dart';
-import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/Views/detail_screen.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:project_pilot/Helper/extentions/string_extension.dart';
 
 class ListFavoriteRecipes extends StatefulWidget {
-  final BehaviorSubject<List<RecipeModel>> streamListRecipes;
   final FavoritesViewModel favoritesViewModel;
 
-  ListFavoriteRecipes(this.streamListRecipes, this.favoritesViewModel);
+  ListFavoriteRecipes(this.favoritesViewModel);
 
   @override
   _ListFavoriteRecipesState createState() => _ListFavoriteRecipesState();
@@ -22,18 +19,23 @@ class ListFavoriteRecipes extends StatefulWidget {
 
 class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.favoritesViewModel.streamListFilter.sink.add([]);
+  }
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.streamListRecipes.value.length,
+      itemCount: widget.favoritesViewModel.streamData.value.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (_) => DetailScreen(
-                  widget.streamListRecipes.value[index],
+                  widget.favoritesViewModel.streamData.value[index],
                   DetailsViewModel(widget.favoritesViewModel),
                 ),
               ),
@@ -41,13 +43,10 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
             widget.favoritesViewModel.unselectAll();
           },
           onLongPress: () {
-              widget.favoritesViewModel.changeListFilter(
-                widget.streamListRecipes.value[index],
-                widget.favoritesViewModel.streamListFilter.value
-                    .contains(widget.streamListRecipes.value[index]),
-              );
-
-
+            widget.favoritesViewModel.changeListFilter(
+                widget.favoritesViewModel.streamData.value[index],
+                widget.favoritesViewModel.streamListFilter.value.contains(
+                    widget.favoritesViewModel.streamData.value[index]));
           },
           child: StreamBuilder(
               stream: widget.favoritesViewModel.streamListFilter,
@@ -56,12 +55,14 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                   margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   decoration: BoxDecoration(
                     color: widget.favoritesViewModel.streamListFilter.value
-                            .contains(widget.streamListRecipes.value[index])
+                            .contains(widget
+                                .favoritesViewModel.streamData.value[index])
                         ? CustomColors.blueSuperLight
                         : Colors.white,
                     border: Border.all(
                       color: widget.favoritesViewModel.streamListFilter.value
-                              .contains(widget.streamListRecipes.value[index])
+                              .contains(widget
+                                  .favoritesViewModel.streamData.value[index])
                           ? CustomColors.purplishBlue
                           : CustomColors.grayLite,
                       width: 1,
@@ -77,8 +78,8 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                           width: 182,
                           height: 218,
                           child: CachedNetworkImage(
-                            imageUrl:
-                                widget.streamListRecipes.value[index].imageUrl,
+                            imageUrl: widget.favoritesViewModel.streamData
+                                .value[index].imageUrl,
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -100,7 +101,8 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                             children: [
                               Align(
                                 child: Text(
-                                    widget.streamListRecipes.value[index].title,
+                                    widget.favoritesViewModel.streamData
+                                        .value[index].title,
                                     maxLines: 2,
                                     style:
                                         Theme.of(context).textTheme.headline6),
@@ -108,8 +110,8 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                               ),
                               Padding(padding: EdgeInsets.only(bottom: 16)),
                               Text(
-                                widget
-                                    .streamListRecipes.value[index].description
+                                widget.favoritesViewModel.streamData
+                                    .value[index].description
                                     .removeHtml(),
                                 style: Theme.of(context)
                                     .textTheme
@@ -126,8 +128,8 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                                       Icon(Icons.favorite,
                                           color: CustomColors.red, size: 24),
                                       Text(
-                                        widget.streamListRecipes.value[index]
-                                            .likesNumber
+                                        widget.favoritesViewModel.streamData
+                                            .value[index].likesNumber
                                             .toString(),
                                         style: TextStyle(
                                             color: CustomColors.red,
@@ -141,8 +143,8 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                                       Icon(Icons.schedule,
                                           color: CustomColors.orange, size: 24),
                                       Text(
-                                        widget.streamListRecipes.value[index]
-                                            .readyInMinutes
+                                        widget.favoritesViewModel.streamData
+                                            .value[index].readyInMinutes
                                             .toString(),
                                         style: TextStyle(
                                             color: CustomColors.orange,
@@ -155,16 +157,22 @@ class _ListFavoriteRecipesState extends State<ListFavoriteRecipes> {
                                     children: [
                                       Icon(Icons.eco,
                                           color: CustomColors.isDisableColor(
-                                              widget.streamListRecipes
-                                                  .value[index].isVegan),
+                                              widget
+                                                  .favoritesViewModel
+                                                  .streamData
+                                                  .value[index]
+                                                  .isVegan),
                                           size: 24),
                                       Text(
                                         "Vegan",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: CustomColors.isDisableColor(
-                                              widget.streamListRecipes
-                                                  .value[index].isVegan),
+                                              widget
+                                                  .favoritesViewModel
+                                                  .streamData
+                                                  .value[index]
+                                                  .isVegan),
                                         ),
                                       )
                                     ],

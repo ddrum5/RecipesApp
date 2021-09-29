@@ -10,7 +10,6 @@ class FavoritesViewModel {
   void getListRecipesFromLocal() async {
     var listRecipes = await BaseViewModel.favoriteRecipeDao.getAllRecipes();
     streamData.sink.add(listRecipes);
-    unselectAll();
   }
 
   void deleteAllFavoriteRecipes() async {
@@ -18,31 +17,30 @@ class FavoritesViewModel {
     getListRecipesFromLocal();
   }
 
-
   void changeListFilter(RecipeModel element, bool value) {
-    final listFavoritesFilter = streamListFilter.value;
     if (!value) {
-      listFavoritesFilter.add(element);
+      streamListFilter.value.add(element);
     } else {
-      listFavoritesFilter.removeWhere((item) {
+      streamListFilter.value.removeWhere((item) {
         return item == element;
       });
     }
-    streamListFilter.sink.add(listFavoritesFilter);
+    streamListFilter.sink.add(streamListFilter.value);
   }
+
   void unselectAll() {
+    streamListFilter.sink.add([]);
     streamListFilter.sink.add([]);
   }
 
-  void deleteSelectedItem() async{
+  void deleteSelectedItem() async {
     await BaseViewModel.favoriteRecipeDao.deleteRecipes(streamListFilter.value);
     getListRecipesFromLocal();
+    unselectAll();
   }
 
   void dispose() {
     streamData.close();
     streamListFilter.close();
   }
-
-
 }

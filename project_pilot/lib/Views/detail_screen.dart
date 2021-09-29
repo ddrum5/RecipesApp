@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_pilot/ViewModels/details_viewmodel.dart';
-import 'package:project_pilot/Helper/configs/custom_colors.dart';
+import 'package:project_pilot/Views/widgets/snack_bar.dart';
 import 'package:project_pilot/models/recipe_model.dart';
 import 'package:project_pilot/views/detail/ingredients_screen.dart';
 import 'package:project_pilot/views/detail/instructions_screen.dart';
@@ -78,28 +78,28 @@ TabBar tabBar(BuildContext context) => TabBar(
             padding: EdgeInsets.only(bottom: 14),
             child: Text(
               AppLocalizations.of(context)?.overview ?? '',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             )),
         Container(
             padding: EdgeInsets.only(bottom: 14),
             child: Text(
               AppLocalizations.of(context)?.ingredient ?? '',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             )),
         Container(
             padding: EdgeInsets.only(bottom: 14),
             child: Text(
               AppLocalizations.of(context)?.instructions ?? '',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             )),
       ],
       indicatorColor: Colors.white,
@@ -109,10 +109,8 @@ buildIconAdd(BuildContext context, Function f) {
   return IconButton(
     onPressed: () {
       f();
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      final snackBar = buildSnackBar(
+      BuildSnackBar.showSnackBar(
           context, AppLocalizations.of(context)?.msgSaveRecipe ?? '');
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     icon: Icon(
       Icons.star,
@@ -125,26 +123,12 @@ buildIconRemove(BuildContext context, Function f) {
   return IconButton(
     onPressed: () {
       f();
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      final snackBar = buildSnackBar(
+      BuildSnackBar.showSnackBar(
           context, AppLocalizations.of(context)?.msgRemoveRecipes ?? '');
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     icon: Icon(
       Icons.star,
       color: Colors.yellow,
-    ),
-  );
-}
-
-SnackBar buildSnackBar(BuildContext context, String text) {
-  return SnackBar(
-    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-    content: Text(text),
-    action: SnackBarAction(
-      textColor: CustomColors.brightVioletLight,
-      label: AppLocalizations.of(context)?.ok ?? '',
-      onPressed: () {},
     ),
   );
 }

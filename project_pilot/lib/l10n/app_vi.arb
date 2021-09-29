@@ -3,6 +3,7 @@
   "favorite": "Yêu thích",
   "favoriteTitle": "Công thức yêu thích",
   "joke": "Câu đùa",
+  "jokeTitle": "Câu Đùa",
 
 
   "details": "Chi tiết",
@@ -44,7 +45,7 @@
 
   "vegan" : "Ăn chay thuần",
   "vegetarian" : "Ăn chay",
-  "ketogenic" : "Ketogenic",
+  "ketogenic" : "Keto",
   "dairy_free" : "Không sữa",
   "gluten_free" : "Không gluten",
   "paleo" : "Thời cổ xưa",
